@@ -1,24 +1,32 @@
-<mat-toolbar>
-  <button mat-icon-button class="sideIcon rounded-circle" aria-label="Navbar">
-    <mat-icon>menu</mat-icon>
-    <mat-sidenav-container class="example-container" *ngIf="shouldRun">
-      <mat-sidenav mode="side">Sidenav content</mat-sidenav>
-      <mat-sidenav-content>
-      </mat-sidenav-content>
-      <mat-drawer-container class="example-container">
-        <mat-drawer mode="side"></mat-drawer>
-        <mat-drawer-content>
-          <a href="">Home</a>
-          <a href="">Chi Siamo</a>
-          <a href="">Prodotti</a>
-          <a href="">Shop</a>
-          <a href="">Vieni a trovarci!</a>
-          <a href="">Dove siamo</a>
-          <a href="">Login/Signup</a>
-          <a href="">WishList</a>
-        </mat-drawer-content>
-      </mat-drawer-container>
-    </mat-sidenav-container>
-  </button>
-  <span class="mx-2">Logo</span>
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1 class="mx-3">Logo</h1>
+  </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="mx-5" mode="side" id="sideNav">
+    <ul>
+    <a mat-list-item [routerLink]="'/'"> Home </a>
+      <li><a mat-list-item [routerLink]="'/chiSiamo'"> Chi Siamo </a></li>
+      <li><a mat-list-item [routerLink]="'/prodotti'"> Prodotti </a></li>
+      <li><a mat-list-item [routerLink]="'/shop'"> Shop </a></li>
+      <li><a mat-list-item [routerLink]="'/prenotaVisita'"> Vieni a trovarci! </a></li>
+      <li><a mat-list-item [routerLink]="'/doveSiamo'"> Dove siamo </a></li>
+      <li><a mat-list-item [routerLink]="'/login'"> Login/Signup </a></li>
+      <li><a mat-list-item [routerLink]="'/wishlist'"> Wishlist </a></li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
