@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <button mat-icon-button class="sideIcon rounded-circle" aria-label="Navbar">
+    <mat-icon>menu</mat-icon>
+    <mat-sidenav-container class="example-container" *ngIf="shouldRun">
+      <mat-sidenav mode="side">Sidenav content</mat-sidenav>
+      <mat-sidenav-content>
+      </mat-sidenav-content>
+      <mat-drawer-container class="example-container">
+        <mat-drawer mode="side"></mat-drawer>
+        <mat-drawer-content>
+          <a href="">Home</a>
+          <a href="">Chi Siamo</a>
+          <a href="">Prodotti</a>
+          <a href="">Shop</a>
+          <a href="">Vieni a trovarci!</a>
+          <a href="">Dove siamo</a>
+          <a href="">Login/Signup</a>
+          <a href="">WishList</a>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </mat-sidenav-container>
+  </button>
+  <span class="mx-2">Logo</span>
+</mat-toolbar>
