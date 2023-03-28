@@ -1,8 +1,16 @@
-li{
+li {
   list-style: none;
 }
 
-#sideNav{
+#sideNav {
   height: 88vh;
-  width: 55vw;
+  width: 35vw;
+  padding: 1vh 0;
 }
+
+a{
+  color: white;
+
+}a:hover{
+    color: aquamarine;
+  }

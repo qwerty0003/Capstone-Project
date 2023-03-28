@@ -1,5 +1,5 @@
 
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
@@ -11,7 +11,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="mx-5" mode="side" id="sideNav">
     <ul>
-    <a mat-list-item [routerLink]="'/'"> Home </a>
+      <li><a mat-list-item [routerLink]="'/'"> Home </a></li>
       <li><a mat-list-item [routerLink]="'/chiSiamo'"> Chi Siamo </a></li>
       <li><a mat-list-item [routerLink]="'/prodotti'"> Prodotti </a></li>
       <li><a mat-list-item [routerLink]="'/shop'"> Shop </a></li>

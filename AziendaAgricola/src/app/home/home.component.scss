@@ -1,16 +1,30 @@
 .card{
   border: none;
+  background: none;
 }
 
-#imgStoria{
-  width: 45%;
-  float: right;
+.card-title{
+  text-align: center;
 }
 
 #prenota{
-  background-color: purple;
+  background-color: #64eabd;
   height: 29vh;
   display: flex;
   align-items: center;
+  color: black;
+    a{
+      color:black;
+    }
 }
+
+#imgStoria{
+  width: 47%;
+  height: 100%;
+  float: right;
+}
+
+
+
+
 

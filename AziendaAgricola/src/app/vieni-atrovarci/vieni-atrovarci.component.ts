@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form } from './form';
 
 @Component({
   selector: 'app-vieni-atrovarci',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VieniATrovarciComponent implements OnInit {
 
-  constructor() { }
+  selected = Date;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }

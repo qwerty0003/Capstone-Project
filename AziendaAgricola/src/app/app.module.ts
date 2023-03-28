@@ -6,7 +6,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +25,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProdottoShopComponent } from './shop/prodotto-shop/prodotto-shop.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { FooterComponent } from './footer/footer.component';
     WishlistComponent,
     LoginComponent,
     SignupComponent,
-    FooterComponent
+    FooterComponent,
+    ProdottoShopComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,11 @@ import { FooterComponent } from './footer/footer.component';
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
-
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
