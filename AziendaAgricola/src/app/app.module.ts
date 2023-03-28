@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -9,8 +11,10 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +29,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProdottoShopComponent } from './shop/prodotto-shop/prodotto-shop.component';
+import { AppointmentFormComponent } from './vieni-atrovarci/appointment-form/appointment-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,7 @@ import { ProdottoShopComponent } from './shop/prodotto-shop/prodotto-shop.compon
     LoginComponent,
     SignupComponent,
     FooterComponent,
-    ProdottoShopComponent
+    AppointmentFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +58,11 @@ import { ProdottoShopComponent } from './shop/prodotto-shop/prodotto-shop.compon
     MatExpansionModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule,
-    MatDatepickerModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

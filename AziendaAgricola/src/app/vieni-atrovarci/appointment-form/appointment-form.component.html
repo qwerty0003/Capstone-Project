@@ -1,0 +1,40 @@
+<div class="row">
+<mat-card>
+  <mat-card-title>Inserisci i dati per prenotare un appuntamento</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="appointmentForm.get('name')?.invalid">Inserisci un nome valido</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Cognome</mat-label>
+        <input matInput formControlName="surname" required>
+        <mat-error *ngIf="appointmentForm.get('surname')?.invalid">Inserisci un cognome valido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required>
+        <mat-error *ngIf="appointmentForm.get('email')?.invalid">Inserisci un'email valida</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="col-12 col-md-6">
+        <mat-label>Data appuntamento</mat-label>
+        <input matInput formControlName="date" type="date" required>
+        <mat-error *ngIf="appointmentForm.get('date')?.invalid">Inserisci una data valida</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" class="col-12"
+      [disabled]="appointmentForm.invalid">
+        <mat-icon>send</mat-icon>
+        Invia
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

@@ -1,4 +1,4 @@
-<section id="sliderSec" class="my-5">
+<div class="container"><section id="sliderSec" class="my-5">
   <div
     id="carouselExampleControls"
     class="carousel slide"
@@ -104,17 +104,18 @@
 </section>
 <section id="prenotaVisita">
   <div id="prenota">
-  <p class="fs-3">
+  <p class="fs-3 p-2">
     Vuoi conoscere da vicino come avviene la realizzazione dei nostri prodotti? Prenota una visita in azienda!
 
-    <a [routerLink]="'/prenotaVisita'">Contattaci!</a>
+    <a [routerLink]="'/prenotaVisita'">Contattaci!<mat-icon> chat_bubble_outline</mat-icon></a>
 
   </p>
 </div>
 </section>
-<section id="storia" class="my-4">
+<section id="storia" class="mt-2 mb-5">
   <div>
     <img src="https://picsum.photos/id/237/600/400" alt="" id="imgStoria" />
     <p class="fs-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam et optio hic voluptatibus perferendis, officia corrupti temporibus consectetur!</p>
   </div>
 </section>
+</div>

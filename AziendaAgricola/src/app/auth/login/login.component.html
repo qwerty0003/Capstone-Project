@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="container my-5">
+  <div class="row">
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="col-12 col-md-6">
+    <input matInput formControlName="email" placeholder="Email">
+  </mat-form-field>
+  <mat-form-field class="col-12 col-md-6">
+    <input matInput type="password" formControlName="password" placeholder="Password">
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="col-12"
+  type="submit" [disabled]="!loginForm.valid">Login</button>
+</form>
+</div>
+<p class="my-2">Se non sei registrato, <a [routerLink]="'/signup'">registrati.</a></p>
+</div>

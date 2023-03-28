@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from './form';
 
 @Component({
   selector: 'app-vieni-atrovarci',
