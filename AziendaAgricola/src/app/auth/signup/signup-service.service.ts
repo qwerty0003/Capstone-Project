@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignupService {
 
-  private signupUrl = 'http://localhost:3000/api/signup'; // url del backend
+  private signupUrl = 'http://localhost:3000/api/auth/signup'; // url del backend
 
   constructor(private http: HttpClient) { }
 

@@ -27,10 +27,11 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '')
       .subscribe(
         response => {
-          // Login success, redirect to home page or do something else
+          console.log(response);
+          this.router.navigate(['/']);
         },
         error => {
-          // Display error message or do something else
+          console.log(error);
         }
       );
   }

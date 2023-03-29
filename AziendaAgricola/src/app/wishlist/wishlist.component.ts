@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { WishlistService } from './wishlist-service.service';
 
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.scss']
 })
-export class WishlistComponent implements OnInit {
-
+export class WishlistComponent {
   panelOpenState = false;
 
-  constructor() { }
+  constructor(private wishlistService: WishlistService) {}
 
-  ngOnInit(): void {
+  addToWishlist() {
+    const prodotto = { nome: 'Avocado', prezzo: 2.99 };
+    this.wishlistService.addToWishlist(prodotto).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
-
 }
