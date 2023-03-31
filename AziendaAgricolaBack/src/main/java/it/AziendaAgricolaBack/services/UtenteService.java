@@ -56,4 +56,12 @@ public class UtenteService {
         utente.setWishlist(wishlist);
         utenteRepository.save(utente);
     }
+    
+    public List<ProdottoAgricolo> getWishlist(Long id) {
+        Utente utente = findById(id);
+        if (utente != null) {
+            return utente.getWishlist();
+        }
+        return null;
+    }
 }

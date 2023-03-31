@@ -30,6 +30,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppointmentFormComponent } from './vieni-atrovarci/appointment-form/appointment-form.component';
+import { AuthModule } from './auth/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AppointmentFormComponent } from './vieni-atrovarci/appointment-form/app
     MatDatepickerModule,
     MatInputModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

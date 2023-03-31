@@ -1,0 +1,14 @@
+.dettagli{
+  font-size: 0.8rem;
+}
+img{
+  max-width:45%;
+  max-height: 60%;
+}
+
+@media screen and (min-width: 550px) {
+  .dettagli{
+    position: absolute;
+    right:1.8em;
+  }
+}

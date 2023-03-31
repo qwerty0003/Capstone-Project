@@ -24,7 +24,7 @@ import it.AziendaAgricolaBack.auth.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity
-public class SecurityConfig {
+public class SecurityConfig{
 
     private UserDetailsService userDetailsService;
 
@@ -52,12 +52,12 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
     	http.cors().and().csrf().disable()
         .authorizeHttpRequests((authorize) -> authorize
-        		.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+        		.requestMatchers("/prodotti-agricoli").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .anyRequest().authenticated())
+                .requestMatchers("/utenti/**").authenticated()
+                .requestMatchers("/prenotazione").permitAll())
         .exceptionHandling( exception -> exception
                 .authenticationEntryPoint(authenticationEntryPoint)
         ).sessionManagement( session -> session
@@ -68,5 +68,6 @@ public class SecurityConfig {
 
     	return http.build();
     }
-
+    
+ 
 }

@@ -1,31 +1,32 @@
-<div class="container">
-<div class="prodottoExpand" class="my-4">
+<div class="container-fluid">
+<div class="prodottoExpand" class="my-4" *ngFor="let p of prodotti">
   <mat-expansion-panel
     (nascondere)="panelOpenState = true"
     (visualizzare)="panelOpenState = false"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> Avocado </mat-panel-title>
-      <mat-panel-description>
+      <mat-panel-title> {{p.nome}} </mat-panel-title>
+      <mat-panel-description class="dettagli">
         Clicca per maggiori dettagli
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="d-flex align-items-center">
-      <img src="https://picsum.photos/id/1020/600/400" alt="" class="w-50" />
+      <img src="{{p.img}}" alt=""/>
       <ul>
-        <li>prezzo/kg: </li>
-        <li>disponibilità: </li>
+        <li>prezzo: {{p.prezzo}}€ </li>
+        <li>disponibilità:  </li>
       </ul>
     </div>
-    <p class="my-2">Avocado di due diversi tipi: razza1 e razza2</p>
-    <button mat-fab extended color="warn" class="w-100 rounded-pill">
-      <mat-icon>favorite</mat-icon>
-      Aggiungi alla wishlist
-    </button>
-    <button mat-fab extended color="accent" class="w-100 rounded-pill">
-      <mat-icon>favorite</mat-icon>
-      Rimuovi dalla wishlist
-    </button>
+    <p class="my-2"><mat-icon>description</mat-icon>{{p.descrizione}}</p>
+    <p class="my-2"><mat-icon>storage</mat-icon>{{p.condizioni_conservazione}}</p>
+    <p class="my-2"><mat-icon>lightbulb</mat-icon>{{p.suggerimenti_uso}}</p>
+
+    <button mat-raised-button color="primary" *ngIf="isLoggedIn()"
+    (click)="addToWishlist(p)">Aggiungi alla wishlist</button>
+
+    <button mat-raised-button color="warn" *ngIf="isLoggedIn()"
+    (click)="removeFromWishlist(p)">Rimuovi dalla wishlist</button>
+
   </mat-expansion-panel>
 </div>
 </div>

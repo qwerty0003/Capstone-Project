@@ -1,40 +1,33 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../auth-service.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, LoginData } from '../auth-service.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
-  });
+constructor(private fb: FormBuilder, private authService: AuthService) { }
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private authService: AuthService
-  ) { }
+ngOnInit(): void {
+this.loginForm = this.fb.group({
+email: ['', [Validators.required, Validators.email]],
+password: ['', Validators.required]
+});
+}
 
-  onSubmit() {
-    this.authService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '')
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/']);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
-
+onSubmit() {
+const { email, password } = this.loginForm.value;
+this.authService.login({ email, password }).subscribe(
+() => {
+console.log('Login effettuato con successo');
+},
+(error) => {
+console.error('Errore durante il login:', error);
+}
+);
+}
 
 }
