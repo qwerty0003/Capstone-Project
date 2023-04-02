@@ -1,12 +1,16 @@
-<mat-toolbar color="accent">
+<!-- <mat-toolbar color="accent">
   <mat-toolbar-row id="nav">
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
     <h1 class="mx-3">Logo</h1>
-    <ng-container *ngIf="currentUser">
-      <span class="mr-2">Accesso effettuato come: {{currentUser.username}}</span>
-      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    <ng-container>
+      <div *ngIf="currentUser" id="infoUserNav">
+        <span class="mr-2"
+          >{{ currentUser.username }}
+          <mat-icon (click)="logout()" color="warn" class="logout">logout</mat-icon>
+        </span>
+      </div>
     </ng-container>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -18,19 +22,69 @@
       <li><a mat-list-item [routerLink]="'/chiSiamo'"> Chi Siamo </a></li>
       <li><a mat-list-item [routerLink]="'/prodotti'"> Prodotti </a></li>
       <li><a mat-list-item [routerLink]="'/shop'"> Shop </a></li>
-      <li><a mat-list-item [routerLink]="'/prenotaVisita'"> Vieni a trovarci! </a></li>
+      <li>
+        <a mat-list-item [routerLink]="'/prenotaVisita'"> Vieni a trovarci! </a>
+      </li>
       <li><a mat-list-item [routerLink]="'/doveSiamo'"> Dove siamo </a></li>
       <li><a mat-list-item [routerLink]="'/wishlist'"> Wishlist </a></li>
       <div *ngIf="!currentUser">
         <li><a routerLink="/login">Login</a></li>
-      <li> <a routerLink="/signup">Signup</a></li>
+        <li><a routerLink="/signup">Signup</a></li>
       </div>
     </ul>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <div class="contenitore">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
 
+
+<mat-toolbar color="accent">
+  <mat-toolbar-row id="nav">
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1 class="mx-3">Logo</h1>
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+      <div id="infoUserNav">
+        <span class="mr-2">Accesso effettuato</span>
+        <button mat-icon-button color="warn" (click)="logout()" class="logout">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <span *ngIf="!(currentUser$ | async)">
+        <a mat-list-item [routerLink]="'/login'">Login</a>
+      </span>
+
+      <span *ngIf="!(currentUser$ | async)">
+        <a mat-list-item [routerLink]="'/signup'">Signup</a>
+      </span>
+    </ng-template>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="mx-5" mode="side" id="sideNav">
+    <ul>
+      <li><a mat-list-item [routerLink]="'/'"> Home </a></li>
+      <li><a mat-list-item [routerLink]="'/chiSiamo'"> Chi Siamo </a></li>
+      <li><a mat-list-item [routerLink]="'/prodotti'"> Prodotti </a></li>
+      <li><a mat-list-item [routerLink]="'/shop'"> Shop </a></li>
+      <li>
+        <a mat-list-item [routerLink]="'/prenotaVisita'"> Vieni a trovarci! </a>
+      </li>
+      <li><a mat-list-item [routerLink]="'/doveSiamo'"> Dove siamo </a></li>
+      <li><a mat-list-item [routerLink]="'/wishlist'"> Wishlist </a></li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="contenitore">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

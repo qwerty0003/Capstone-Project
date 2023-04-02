@@ -1,68 +1,28 @@
-<!--  <div class="container">
+<div class="container">
 
-  <div class="row">
-    <div class="prodottoExpand" class="my-4">
-      <mat-expansion-panel
-        (nascondere)="panelOpenState = true"
-        (visualizzare)="panelOpenState = false"
-      >
+  <div class="row" *ngFor="let prodotto of wishlist$ | async">
+    <div class="prodottoExpand my-4">
+      <mat-expansion-panel (nascondere)="panelOpenState = true" (visualizzare)="panelOpenState = false">
         <mat-expansion-panel-header>
-          <mat-panel-title> Avocado </mat-panel-title>
+          <mat-panel-title>{{prodotto.nome}}</mat-panel-title>
           <mat-panel-description>
             Clicca per maggiori dettagli
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="d-flex align-items-center">
-          <img src="https://picsum.photos/id/1020/600/400" alt="" class="w-50" />
+          <img [src]="prodotto.img" alt="" class="w-50" />
           <ul>
-            <li>prezzo/kg: </li>
-            <li>disponibilità: </li>
+            <li>prezzo/kg: {{prodotto.prezzo}}€</li>
+            <li>disponibilità: {{prodotto.disponibilita}}</li>
           </ul>
         </div>
-        <p class="my-2">Avocado di due diversi tipi: razza1 e razza2</p>
-
-        <button mat-fab extended color="accent" class="w-100 rounded-pill">
+        <p class="my-2">{{prodotto.descrizione}}</p>
+        <button mat-fab extended color="accent" class="w-100 rounded-pill" (click)="removeItemFromWishlist(prodotto)">
           <mat-icon>favorite</mat-icon>
           Rimuovi dalla wishlist
         </button>
       </mat-expansion-panel>
     </div>
+  </div>
 
-
-  </div></div> -->
-
-  <div class="container">
-
-    <div class="row">
- <div class="prodottoExpand" class="my-4">
-  <mat-expansion-panel
-    (nascondere)="panelOpenState = true"
-    (visualizzare)="panelOpenState = false"
-  >
-
-    <mat-expansion-panel-header>
-
-      <mat-panel-title> Avocado </mat-panel-title>
-
-      <mat-panel-description>
-        Clicca per maggiori dettagli
-      </mat-panel-description>
-
-    </mat-expansion-panel-header>
-    <div class="d-flex align-items-center">
-      <img src="https://picsum.photos/id/1020/600/400" alt="" class="w-50" />
-      <ul>
-        <li>prezzo/kg: </li>
-        <li>disponibilità: </li>
-      </ul>
-    </div>
-    <p class="my-2">Avocado di due diversi tipi: razza1 e razza2</p>
-
-    <button mat-fab extended color="accent" class="w-100 rounded-pill" (click)="addToWishlist()">
-      <mat-icon>favorite</mat-icon>
-      Rimuovi dalla wishlist
-    </button>
-  </mat-expansion-panel>
-</div>
-</div>
 </div>

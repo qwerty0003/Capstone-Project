@@ -40,24 +40,25 @@ export class ProdottiComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  addToWishlist(p: any) {
-    const user = this.authService.getCurrentUser();
-    if (user) {
-      const productId = p.id;
-      this.utentiService.addToWishlist(user.user.id.toString(), productId.toString()).subscribe((data: any) => {
-        this.wishlist.push(productId);
-      });
+  addToWishlist(p: Prodotto): void {
+    if (!this.isInWishlist(p)) {
+      this.wishlist.push(p);
     }
   }
 
-  removeFromWishlist(p: any) {
+  removeFromWishlist(p: Prodotto) {
     const user = this.authService.getCurrentUser();
     if (user) {
       const productId = p.id;
       this.utentiService.removeFromWishlist(user.user.id.toString(), productId.toString()).subscribe(() => {
-        this.wishlist = this.wishlist.filter((id) => id !== productId);
+        this.wishlist = this.wishlist.filter((item) => item.id !== productId);
       });
     }
+  }
+
+
+  isInWishlist(p: Prodotto): boolean {
+    return this.wishlist.findIndex((item) => item.id === p.id) !== -1;
   }
 
 

@@ -39,6 +39,7 @@ export class AuthService {
     this.restoreUser();
   }
 
+
   login(data: LoginData) {
 
     return this.http.post<AuthData>(`${this.URL}signin`, data).pipe(
@@ -49,6 +50,7 @@ export class AuthService {
         this.autoLogout(expirationDate);
 
         this.authSubj.next(data);
+        this.restoreUser(); // aggiorna subito le condizioni if
         this.router.navigate(['/']);
       }),
       catchError(this.errors)
@@ -68,36 +70,35 @@ export class AuthService {
     this.router.navigate(['/']);
     localStorage.removeItem('user'); //dimentichiamo il token per evitare autologin
     if (this.autoLogoutTimer) {
-      clearTimeout(this.autoLogoutTimer);
+    clearTimeout(this.autoLogoutTimer);
     }
-  }
+    }
 
 
-  restoreUser() {
-    const userJson = localStorage.getItem('user');
-    if (!userJson) {
+    restoreUser() {
+      const userJson = localStorage.getItem('user');
+      if (!userJson) {
       return;
-    }
-    const user: AuthData = JSON.parse(userJson);
-    if (!user.accessToken) {
+      }
+      const user: AuthData = JSON.parse(userJson);
+      if (!user.accessToken) {
       return;
-    }
-    this.authSubj.next(user);
-    const expirationDate = this.getExpirationDateFromToken(user.accessToken);
-    this.autoLogout(expirationDate.getTime());
+      }
+      this.authSubj.next(user);
+      const expirationDate = this.getExpirationDateFromToken(user.accessToken);
+      this.autoLogout(expirationDate.getTime());
+      }
 
-}
-
-private getExpirationDateFromToken(token: string): Date {
-  const jwtPayload = token.split('.')[1];
-  const jwtPayloadDecoded = atob(jwtPayload);
-  const payloadObject = JSON.parse(jwtPayloadDecoded);
-  const expirationTimestamp = payloadObject.exp;
-  if (!expirationTimestamp) {
-    return new Date(); // restituisce la data corrente se la proprietà 'exp' non esiste
-  }
-  return new Date(expirationTimestamp * 1000);
-}
+      private getExpirationDateFromToken(token: string): Date {
+      const jwtPayload = token.split('.')[1];
+      const jwtPayloadDecoded = atob(jwtPayload);
+      const payloadObject = JSON.parse(jwtPayloadDecoded);
+      const expirationTimestamp = payloadObject.exp;
+      if (!expirationTimestamp) {
+      return new Date(); // restituisce la data corrente se la proprietà 'exp' non esiste
+      }
+      return new Date(expirationTimestamp * 1000);
+      }
 
 
 
@@ -165,5 +166,18 @@ private getExpirationDateFromToken(token: string): Date {
       observer.complete();
     });
   }
+
+  getUserIdFromToken(token: string): number | null {
+    try {
+      const jwtPayload = token.split('.')[1];
+      const jwtPayloadDecoded = atob(jwtPayload);
+      const payloadObject = JSON.parse(jwtPayloadDecoded);
+      return payloadObject.id;
+    } catch {
+      return null;
+    }
+  }
+
+
 
 }

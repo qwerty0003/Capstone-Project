@@ -21,11 +21,12 @@
     <p class="my-2"><mat-icon>storage</mat-icon>{{p.condizioni_conservazione}}</p>
     <p class="my-2"><mat-icon>lightbulb</mat-icon>{{p.suggerimenti_uso}}</p>
 
-    <button mat-raised-button color="primary" *ngIf="isLoggedIn()"
+    <button mat-raised-button color="primary" *ngIf="isLoggedIn() && !isInWishlist(p)"
     (click)="addToWishlist(p)">Aggiungi alla wishlist</button>
 
-    <button mat-raised-button color="warn" *ngIf="isLoggedIn()"
+  <button mat-raised-button color="warn" *ngIf="isLoggedIn() && isInWishlist(p)"
     (click)="removeFromWishlist(p)">Rimuovi dalla wishlist</button>
+
 
   </mat-expansion-panel>
 </div>

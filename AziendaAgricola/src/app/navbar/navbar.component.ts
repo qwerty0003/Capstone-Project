@@ -1,6 +1,6 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { AuthData, AuthService } from '../auth/auth-service.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,19 +11,19 @@ export class NavbarComponent implements OnInit {
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
   currentUser: any;
+  currentUser$: Observable<any> = this.authService.getCurrentUserObservable();
+  isLoggedIn = false;
 
-  constructor(private authService: AuthService, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUserObservable().subscribe(user => {
-      this.currentUser = user;
-      this.changeDetectorRef.detectChanges();
+    this.authService.user$.subscribe((user) => {
+      this.isLoggedIn = !!user;
     });
   }
 
   logout() {
     this.authService.logout();
-    this.changeDetectorRef.detectChanges();
   }
 
 }

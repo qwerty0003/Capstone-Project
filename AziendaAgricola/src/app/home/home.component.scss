@@ -1,3 +1,7 @@
+section{
+margin: 1em 0;
+}
+
 .card{
   border: none;
   background: none;
@@ -5,6 +9,11 @@
 
 .card-title{
   text-align: center;
+}
+.carousel-item{
+  img{
+    height: 40vh;
+  }
 }
 
 #prenota{
@@ -23,11 +32,17 @@
 }
 
 #imgStoria{
-  width: 47%;
-  height: 100%;
+  width: 45%;
+  height: 85%;
   float: right;
 }
 
+.prodotto{
+  img{
+    width: 40vw;
+    height: 25vh;
+  }
+}
 
 
 

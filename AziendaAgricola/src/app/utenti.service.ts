@@ -1,23 +1,28 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtentiService {
-  private baseUrl = 'http://localhost:3000/utenti';
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'https://api.example.com/utenti';
 
-  getWishlist(userId: string) {
-    return this.http.get(`${this.baseUrl}/${userId}/wishlist`);
+  constructor(private http: HttpClient) { }
+
+  addToWishlist(userId: string, productId: string): Observable<any> {
+    const url = `${this.apiUrl}/${userId}/wishlist`;
+    return this.http.post(url, { productId });
   }
 
-  addToWishlist(userId: string, productId: string) {
-    return this.http.post(`${this.baseUrl}/${userId}/wishlist`, { id: productId });
+  removeFromWishlist(userId: string, productId: string): Observable<any> {
+    const url = `${this.apiUrl}/${userId}/wishlist/${productId}`;
+    return this.http.delete(url);
   }
 
-  removeFromWishlist(userId: string, productId: string) {
-    return this.http.delete(`${this.baseUrl}/${userId}/wishlist/${productId}`);
+  getWishlist(userId: string): Observable<any[]> {
+    const url = `${this.apiUrl}/${userId}/wishlist`;
+    return this.http.get<any[]>(url);
   }
 }
