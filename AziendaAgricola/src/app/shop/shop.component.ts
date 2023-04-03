@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdottiServiceService } from '../prodotti-service.service';
+import { Prodotto } from '../prodotti/prodotto';
 
 @Component({
   selector: 'app-shop',
@@ -6,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+  prodotti: Prodotto[] = [];
 
-  constructor() { }
+  constructor(private prodottiService: ProdottiServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getProdotti();
   }
 
+  getProdotti() {
+    this.prodottiService.getProducts().subscribe(
+      (data) => {
+        this.prodotti = data;
+      },
+      (error) => console.error(error)
+    );
+  }
+
+  aggiungiAlCarrello(prodotto: Prodotto) {
+    console.log('Aggiunto al carrello: ', prodotto.nome);
+    // aggiungi il prodotto al carrello
+  }
 }

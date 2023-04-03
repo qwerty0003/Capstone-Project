@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.AziendaAgricolaBack.entities.ProdottoAgricolo;
 import it.AziendaAgricolaBack.services.ProdottoAgricoloService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
 @RestController
 @RequestMapping("/prodotti-agricoli")
 public class ProdottoAgricoloController {

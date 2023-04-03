@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.AziendaAgricolaBack.services.EmailService;
 import jakarta.mail.MessagingException;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
 @RestController
 public class EmailController {
     

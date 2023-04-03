@@ -3,6 +3,32 @@
   max-width:100%;
   min-width: 45%;
   img{
-    width: 70%;
+    width: 50vw;
+    height: 25vh;
   }
 }
+
+.pallino {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.disponibile {
+  color: green;
+}
+
+.disponibile ~ .non-disponibile {
+  color: gray;
+}
+
+.disponibile .pallino {
+  background-color: green;
+}
+
+.non-disponibile .pallino {
+  background-color: gray;
+}
+

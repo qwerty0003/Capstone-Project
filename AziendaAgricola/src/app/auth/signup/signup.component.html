@@ -1,30 +1,36 @@
 <div class="container my-5">
   <div class="row">
+
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="col-12 col-md-6">
     <mat-label>Nome</mat-label>
-    <input matInput formControlName="name">
+    <input matInput formControlName="nome">
     <mat-error>Il campo nome è obbligatorio</mat-error>
   </mat-form-field>
+
   <mat-form-field class="col-12 col-md-6">
     <mat-label>Cognome</mat-label>
-    <input matInput formControlName="surname">
+    <input matInput formControlName="cognome">
     <mat-error>Il campo cognome è obbligatorio</mat-error>
   </mat-form-field>
+
   <mat-form-field class="col-12 col-md-6">
     <mat-label>Email</mat-label>
     <input matInput formControlName="email">
     <mat-error>Il campo email è obbligatorio</mat-error>
     <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Inserisci un'email valida</mat-error>
   </mat-form-field>
+
   <mat-form-field class="col-12 col-md-6">
     <mat-label>Password</mat-label>
     <input matInput formControlName="password" type="password">
     <mat-error>Il campo password è obbligatorio</mat-error>
     <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">La password deve avere almeno 6 caratteri</mat-error>
   </mat-form-field>
+
   <button mat-raised-button type="submit" color="primary"
   class="col-12" [disabled]="!signupForm.valid">Registrati</button>
+
 </form>
 </div>
 </div>

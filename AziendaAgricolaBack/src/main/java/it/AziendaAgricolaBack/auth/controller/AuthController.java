@@ -13,7 +13,7 @@ import it.AziendaAgricolaBack.auth.payload.LoginDto;
 import it.AziendaAgricolaBack.auth.payload.RegisterDto;
 import it.AziendaAgricolaBack.auth.services.AuthService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -24,7 +24,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    // Build Login REST API
+    // Login REST API
     @PostMapping(value = {"/signin"})
     public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto){
            	
@@ -37,7 +37,7 @@ public class AuthController {
         return ResponseEntity.ok(jwtAuthResponse);
     }
 
-    // Build Register REST API
+    // Register REST API
     @PostMapping(value = {"/signup"})
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
         String response = authService.register(registerDto);

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError,Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { User } from '../wishlist/wishlist-service.service';
 
 export interface SignupData {
   nome: string;
@@ -110,30 +111,52 @@ export class AuthService {
 }
 
 
-  private errors(err: any) {
+private errors(err: any) {
+  let errorMessage: string;
+  if (err.error) {
     switch (err.error) {
       case 'Email and password are required':
-        alert('Email e password sono obbligatorie');
-        throw new Error('Email e password sono obbligatorie');
+        errorMessage = 'Email e password sono obbligatorie';
         break;
       case 'Email already exists':
-        alert('Utente già registrato');
-        return throwError('Utente già registrato');
+        errorMessage = 'Utente già registrato';
         break;
       case 'Email format is invalid':
-        alert('Email scritta male');
-        return throwError('Email scritta male');
+        errorMessage = 'Email scritta male';
         break;
       case 'Cannot find user':
-        alert("L'utente non esiste");
-        return throwError("L'utente non esiste");
+        errorMessage = "L'utente non esiste";
         break;
       default:
-        alert('Errore nella chiamata');
-        return throwError('Errore nella chiamata');
+        errorMessage = 'Errore nella chiamata';
         break;
     }
+  } else if (err.status) {
+    switch (err.status) {
+      case 401:
+        errorMessage = 'Non autorizzato';
+        break;
+      case 403:
+        errorMessage = 'Vietato';
+        break;
+      case 404:
+        errorMessage = 'Non trovato';
+        break;
+      case 500:
+        errorMessage = 'Errore interno del server';
+        break;
+      default:
+        errorMessage = 'Errore nella chiamata';
+        break;
+    }
+  } else {
+    errorMessage = 'Errore sconosciuto';
   }
+
+  alert(errorMessage);
+  return throwError(errorMessage);
+}
+
 
   isLoggedIn() {
     return !!this.authSubj.getValue();
@@ -165,17 +188,6 @@ export class AuthService {
       observer.next(this.getCurrentUser());
       observer.complete();
     });
-  }
-
-  getUserIdFromToken(token: string): number | null {
-    try {
-      const jwtPayload = token.split('.')[1];
-      const jwtPayloadDecoded = atob(jwtPayload);
-      const payloadObject = JSON.parse(jwtPayloadDecoded);
-      return payloadObject.id;
-    } catch {
-      return null;
-    }
   }
 
 

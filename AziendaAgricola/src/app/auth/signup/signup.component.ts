@@ -15,8 +15,8 @@ export class SignupComponent {
     private router: Router
   ) {
     this.signupForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
@@ -26,8 +26,8 @@ export class SignupComponent {
 
   onSubmit() {
     const signupData = {
-      nome: this.signupForm.value.name,
-      cognome: this.signupForm.value.surname,
+      nome: this.signupForm.value.nome,
+      cognome: this.signupForm.value.cognome,
       email: this.signupForm.value.email,
       password: this.signupForm.value.password
     };
