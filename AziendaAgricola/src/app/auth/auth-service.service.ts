@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError,Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { User } from '../wishlist/wishlist-service.service';
+import { User } from '../utenti.service';
 
 export interface SignupData {
   nome: string;
@@ -14,6 +14,7 @@ export interface SignupData {
 
 export interface AuthData {
   accessToken: string;
+  username:string;
   user: {
     email: string;
     id: number;

@@ -45,7 +45,7 @@ public class Utente {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ProdottoAgricolo> wishlist;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

@@ -56,7 +56,7 @@ public class SecurityConfig{
         .authorizeHttpRequests((authorize) -> authorize
         		.requestMatchers("/prodotti-agricoli").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/utenti/**").authenticated()
+                .requestMatchers("/utenti/**").permitAll()
                 .requestMatchers("/prenotazione").permitAll())
         .exceptionHandling( exception -> exception
                 .authenticationEntryPoint(authenticationEntryPoint)

@@ -86,7 +86,7 @@
     <div class="row">
       <div class="prodottoShop my-2 col-12 col-md-6 flex-column" *ngFor="let prodotto of prodotti">
         <img [src]="prodotto.img" alt="" class="rounded-circle" />
-        <p class="my-2">{{ prodotto.nome }}, {{ prodotto.prezzo }}€/kg</p>
+        <p class="my-2">{{ prodotto.nome }}, {{ prodotto.prezzo }}€</p>
         <p class="my-2">{{ prodotto.descrizione }}</p>
         <p class="my-2">
           <span class="pallino" [ngClass]="{'disponibile': prodotto.disponibilita, 'non-disponibile': !prodotto.disponibilita}"></span>
@@ -96,7 +96,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Seleziona la quantità</mat-label>
           <mat-select>
-            <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">{{ qnt }}kg</mat-option>
+            <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">{{ qnt }}</mat-option>
           </mat-select>
         </mat-form-field>
 

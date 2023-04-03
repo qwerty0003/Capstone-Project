@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.AziendaAgricolaBack.entities.ProdottoAgricolo;
 import it.AziendaAgricolaBack.entities.Utente;
+import it.AziendaAgricolaBack.services.ProdottoAgricoloService;
 import it.AziendaAgricolaBack.services.UtenteService;
 import jakarta.validation.Valid;
 
@@ -30,6 +31,9 @@ public class UtenteController {
 
 	@Autowired
 	private UtenteService utenteService;
+	@Autowired
+	private ProdottoAgricoloService prodottoService;
+	
 
 	@GetMapping("/{id}/wishlist")
 	public ResponseEntity<List<ProdottoAgricolo>> getWishlist(@PathVariable Long id) {
@@ -53,18 +57,20 @@ public class UtenteController {
 	    return ResponseEntity.ok().build();
 	}
 
-	@DeleteMapping("/{id}/wishlist")
-	public ResponseEntity<?> removeFromWishlist(@PathVariable Long id, @RequestBody @Valid ProdottoAgricolo prodotto, BindingResult bindingResult) {
-	    if (bindingResult.hasErrors()) {
-	        return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
-	    }
+	@DeleteMapping("/{id}/wishlist/{idProdotto}")
+	public ResponseEntity<?> removeFromWishlist(@PathVariable Long id, @PathVariable Long idProdotto) {
 	    Utente utente = utenteService.findById(id);
 	    if (utente == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+	    ProdottoAgricolo prodotto = prodottoService.findById(idProdotto);
+	    if (prodotto == null) {
 	        return ResponseEntity.notFound().build();
 	    }
 	    utenteService.removeFromWishlist(utente, prodotto);
 	    return ResponseEntity.ok().build();
 	}
+
 	
 	@GetMapping("/elenco")
 	public ResponseEntity<List<Map<String, Object>>> getElencoUtenti() {

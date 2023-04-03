@@ -1,10 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
-import { throwError } from 'rxjs';
-import { switchMap,take } from 'rxjs/operators';
-import { WishlistService } from './wishlist-service.service';
-import { WishlistItem } from './wishlist-item';
 import { AuthService } from '../auth/auth-service.service';
+import { UtentiService } from '../utenti.service';
+import { throwError } from 'rxjs';
+import { Prodotto } from '../prodotti/prodotto';
 
 @Component({
   selector: 'app-wishlist',
@@ -13,48 +11,42 @@ import { AuthService } from '../auth/auth-service.service';
 })
 export class WishlistComponent implements OnInit {
   panelOpenState = false;
-  wishlist: WishlistItem[] = [];
+  wishlist: Prodotto[] = [];
 
-  constructor(private authService: AuthService, private wishlistService: WishlistService) { }
+  constructor(private authService: AuthService,
+    private utentiService: UtentiService) { }
 
-  ngOnInit(): void {
-    const user = this.authService.getCurrentUser();
-    console.log(user); // Verifica il valore di user
-    if (user) {
-      this.wishlistService.getWishlist(user.user.id.toString()).subscribe((data: WishlistItem[]) => {
-        this.wishlist = data;
-      });
+    ngOnInit(): void {
+      const user = this.authService.getCurrentUser();
+      if (user) {
+        this.utentiService.getElencoUtenti().subscribe((data: any[]) => {
+          const userId = data.find(u => u.email === user.username)?.id;
+          if (userId) {
+              this.utentiService.getWishlist(userId).subscribe((wishlist: Prodotto[]) => {
+              this.wishlist = wishlist;
+            });
+          }
+        });
+      }
     }
-  }
-    //   this.authService.getCurrentUserObservable().subscribe(user => {
-  //     if (user && user.user.id) {
-  //       this.wishlistService.getWishlist(user.user.id.toString()).subscribe(wishlist => {
-  //         this.wishlist = wishlist;
-  //       });
-  //     } else {
-  //       this.wishlist = [];
-  //     }
-  //   });
-  // }
 
-  removeItemFromWishlist(item: WishlistItem) {
-    const user = this.authService.getCurrentUserObservable();
-    user.pipe(
-      take(1),
-      switchMap(userData => {
-        if (userData && userData.user) {
-          return this.wishlistService.removeWishlistItem(userData.user.id.toString(), item.id.toString());
-        } else {
-          return throwError('Errore: l\'utente non è autenticato.');
-        }
-      })
-    ).subscribe(() => {
-      // Aggiorna la lista dei desideri dopo la rimozione dell'elemento
-      this.wishlist = this.wishlist.filter(i => i !== item);
-    }, error => {
-      console.error(error);
-    });
-  }
+    removeItemFromWishlist(item: Prodotto) {
+      const user = this.authService.getCurrentUser();
+      if (user) {
+        this.utentiService.getElencoUtenti().subscribe((data: any[]) => {
+          const userId = data.find(u => u.email === user.username)?.id;
+          if (userId) {
+            this.utentiService.removeFromWishlist(userId.toString(), item.id.toString()).subscribe(() => {
+              // Rimuove l'elemento dalla lista dei desideri
+              this.wishlist = this.wishlist.filter(i => i !== item);
+            }, error => {
+              console.error(error);
+            });
+          }
+        });
+      } else {
+        throwError('Errore: l\'utente non è autenticato.');
+      }
+    }
 
 }
-

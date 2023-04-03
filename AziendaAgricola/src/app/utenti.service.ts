@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WishlistItem } from './wishlist/wishlist-item';
 
+export interface User {
+  id: number;
+  nome: string;
+  cognome: string;
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
