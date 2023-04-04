@@ -1,83 +1,100 @@
-<div class="container"><section id="sliderSec" class="my-5">
-  <div
-    id="carouselExampleControls"
-    class="carousel slide"
-    data-bs-ride="carousel"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="../../assets/viale_alberi.jpg"
-          class="d-block w-100"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="../../assets/vista.jpg"
-          class="d-block w-100"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="../../assets/limoni_albero.jpg"
-          class="d-block w-100"
-          alt="..."
-        />
-      </div>
-    </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</section>
+<app-spinner *ngIf="!loaded"></app-spinner>
 
-<section id="prodotti" class="my-4">
-  <h1>Prodotti:</h1>
+<div *ngIf="loaded">
+  <div class="container">
+    <section id="sliderSec" class="my-5">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../../assets/viale_alberi.jpg"
+              class="d-block"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img src="../../assets/vista.jpg" class="d-block" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../../assets/limoni_albero.jpg"
+              class="d-block"
+              alt="..."
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
 
-  <div class="row">
-    <div *ngFor="let prodotto of prodotti" class="prodotto col-6 col-md-3">
-      <div class="card">
-        <img [src]="prodotto.img" class="card-img-top rounded-circle" alt="img prodotto">
-        <div class="card-body">
-          <p class="card-title">{{ prodotto.nome }}</p>
+    <section id="prodotti" class="my-4">
+      <h1>Prodotti:</h1>
+
+      <div class="row">
+        <div
+          *ngFor="let prodotto of prodotti; let last = last"
+          class="prodotto col-6 col-md-4"
+          [class.last-child]="last"
+        >
+          <div class="card">
+            <img
+              [src]="prodotto.img"
+              class="card-img-top rounded-circle"
+              alt="img prodotto"
+            />
+            <div class="card-body">
+              <p class="card-title">{{ prodotto.nome }}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="prenotaVisita">
+      <div id="prenota">
+        <p class="fs-3 p-2">
+          Vuoi conoscere da vicino come avviene la realizzazione dei nostri
+          prodotti? Prenota una visita in azienda!
+
+          <a [routerLink]="'/prenotaVisita'"
+            >Contattaci!<mat-icon> chat_bubble_outline</mat-icon></a
+          >
+        </p>
+      </div>
+    </section>
+
+    <section id="storia">
+      <div>
+        <img src="../../assets/limoni_albero.jpg" id="imgStoria" />
+        <div id="deskText">
+          <p class="fs-5">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam et
+            optio hic voluptatibus perferendis, officia corrupti temporibus
+            consectetur!
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
-
-<section id="prenotaVisita">
-  <div id="prenota">
-  <p class="fs-3 p-2">
-    Vuoi conoscere da vicino come avviene la realizzazione dei nostri prodotti? Prenota una visita in azienda!
-
-    <a [routerLink]="'/prenotaVisita'">Contattaci!<mat-icon> chat_bubble_outline</mat-icon></a>
-
-  </p>
-</div>
-</section>
-
-<section id="storia">
-  <div>
-    <img src="../../assets/limoni_albero.jpg" id="imgStoria" />
-    <p class="fs-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam et optio hic voluptatibus perferendis, officia corrupti temporibus consectetur!</p>
-  </div>
-</section>
 </div>

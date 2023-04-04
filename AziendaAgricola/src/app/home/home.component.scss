@@ -12,7 +12,8 @@ margin: 1em 0;
 }
 .carousel-item{
   img{
-    height: 40vh;
+    width: 94vw;
+    height: 45vh;
   }
 }
 
@@ -32,18 +33,55 @@ margin: 1em 0;
 }
 
 #imgStoria{
-  width: 45%;
-  height: 85%;
+  width: 58%;
+  height: 75%;
   float: right;
 }
 
 .prodotto{
   img{
-    width: 40vw;
-    height: 25vh;
+    width: 44vw;
+    height: 23vh;
   }
 }
 
+@media screen and (min-width: 550px) {
+  .carousel-item{
+    img{
+      width: 88vw;
+      height: 95vh;
+    }
+  }
+
+  .prodotto{
+    img{
+      width: 29vw;
+      height: 51vh;
+    }
+  }
+  .prodotto.last-child {
+    margin-left: auto;
+  }
+  #prenota{
+    padding: 28px;
+ }
+
+ #storia{
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#deskText{
+  padding: 14%;
+}
+
+#imgStoria{
+  width: 30%;
+  height: 100%;
+}
+}
 
 
 

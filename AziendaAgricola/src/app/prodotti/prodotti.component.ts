@@ -16,18 +16,23 @@ export class ProdottiComponent implements OnInit {
   panelOpenState = false;
   prodotti: Prodotto[] = [];
   wishlist: Prodotto[] = [];
+  loaded = false;
+
 
   constructor(
     private prodottiService: ProdottiServiceService,
     private utentiService: UtentiService,
     private authService: AuthService
-  ) {
-  }
+    ) {
+    }
 
-  ngOnInit(): void {
-    this.prodottiService.getProducts().subscribe((data: Prodotto[]) => {
-      this.prodotti = data;
-    });
+    ngOnInit(): void {
+      this.prodottiService.getProducts().subscribe((data: Prodotto[]) => {
+        this.prodotti = data;
+      });
+      setTimeout(() => {
+        this.loaded = true;
+      }, 2000);
 
     const user = this.authService.getCurrentUser();
     if (user) {

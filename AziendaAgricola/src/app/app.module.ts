@@ -31,6 +31,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppointmentFormComponent } from './vieni-atrovarci/appointment-form/appointment-form.component';
 import { AuthModule } from './auth/auth/auth.module';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AuthModule } from './auth/auth/auth.module';
     SignupComponent,
     FooterComponent,
     AppointmentFormComponent,
+    SpinnerComponent,
+    ChiSiamoComponent,
   ],
   imports: [
     BrowserModule,

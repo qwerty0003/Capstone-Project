@@ -73,8 +73,8 @@ public class ProdottoAgricoloRunner implements ApplicationRunner {
 				.qnt_vendita(listFico).condizioni_conservazione("Conservare in frigorifero")
 				.suggerimenti_uso("Ottimo da consumare sia fresco o "
 						+ "assiccato che per la preparazione di confetture").disponibilita(true)
-				.img("https://cdn.pixabay.com/photo/2014/11/04/20/10/fig-517108_960_720.jpg")
-				.img_mobile("https://cdn.pixabay.com/photo/2014/11/04/20/10/fig-517108_960_720.jpg").build();
+				.img("https://cdn.pixabay.com/photo/2017/08/28/22/24/figs-2691523_960_720.jpg")
+				.img_mobile("https://cdn.pixabay.com/photo/2017/08/28/22/24/figs-2691523_960_720.jpg").build();
 		
 		ps.save(fico);
 		

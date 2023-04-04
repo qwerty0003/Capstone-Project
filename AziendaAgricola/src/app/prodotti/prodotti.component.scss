@@ -1,14 +1,64 @@
-.dettagli{
+.dettagli {
   font-size: 0.8rem;
 }
-img{
-  max-width:45%;
-  max-height: 60%;
+img {
+  width: 63%;
+  height: 23vh;
+  border-radius: 6%;
+}
+
+.viola {
+  background-color: #7b1fa2;
+  background-image: linear-gradient(to right, #7b1fa2, #a650c3, #d87fe3);
+  transition: 0.5s;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  box-shadow: 1px 1px 3px #eee;
+  display: block;
+  background-size: 200% auto;
+}
+
+.rosso {
+  background-image: linear-gradient(to right, #e52d27 0%, #b31217  51%, #e52d27  100%);
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 1px 1px 3px #eee;
+  display: block;
+}
+
+.viola:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  background-image: linear-gradient(to right, #d87fe3, #a650c3, #7b1fa2);
+}
+
+.rosso:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 550px) {
-  .dettagli{
+  .dettagli {
     position: absolute;
-    right:1.8em;
+    right: 1.8em;
+  }
+  img {
+    width: 75%;
+    height: 50vh;
+  }
+  .bottoni {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 50%;
+    }
   }
 }

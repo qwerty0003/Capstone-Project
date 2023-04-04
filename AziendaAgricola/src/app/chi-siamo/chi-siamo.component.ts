@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChiSiamoComponent implements OnInit {
 
+  loaded = false;
   constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    setTimeout(() => {
+      this.loaded = true;
+    }, 2000); // Imposta loaded su true dopo 2 secondi
   }
+
 
 }

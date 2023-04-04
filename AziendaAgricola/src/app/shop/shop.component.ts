@@ -5,15 +5,20 @@ import { Prodotto } from '../prodotti/prodotto';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss']
+  styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
   prodotti: Prodotto[] = [];
+  loaded = false;
 
-  constructor(private prodottiService: ProdottiServiceService) { }
+  constructor(private prodottiService: ProdottiServiceService) {}
 
   ngOnInit() {
     this.getProdotti();
+
+    setTimeout(() => {
+      this.loaded = true;
+    }, 2000);
   }
 
   getProdotti() {

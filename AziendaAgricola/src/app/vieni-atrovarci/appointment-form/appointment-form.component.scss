@@ -1,0 +1,17 @@
+.btn-grad {
+  background-color: #ddd;
+  background-image: linear-gradient(to right, #ddd, #aaa);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 1.5rem;
+  border-radius: 20px;
+}
+
+.btn-grad:not(:disabled) {
+  background-color: #7b1fa2;
+  background-image: linear-gradient(to right, #7b1fa2, #a650c3, #d87fe3);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  padding: 0.3rem 1.4rem;
+  border-radius: 16px;
+}

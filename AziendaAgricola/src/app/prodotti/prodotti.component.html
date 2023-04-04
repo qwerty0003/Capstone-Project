@@ -1,33 +1,55 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+<div *ngIf="loaded">
 <div class="container-fluid">
-<div class="prodottoExpand" class="my-4" *ngFor="let p of prodotti">
-  <mat-expansion-panel
-    (nascondere)="panelOpenState = true"
-    (visualizzare)="panelOpenState = false"
-  >
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{p.nome}} </mat-panel-title>
-      <mat-panel-description class="dettagli">
-        Clicca per maggiori dettagli
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="d-flex align-items-center">
-      <img src="{{p.img}}" alt=""/>
-      <ul>
-        <li>prezzo: {{p.prezzo}}€ </li>
-        <li>disponibilità:  </li>
-      </ul>
-    </div>
-    <p class="my-2"><mat-icon>description</mat-icon>{{p.descrizione}}</p>
-    <p class="my-2"><mat-icon>storage</mat-icon>{{p.condizioni_conservazione}}</p>
-    <p class="my-2"><mat-icon>lightbulb</mat-icon>{{p.suggerimenti_uso}}</p>
+  <div class="prodottoExpand" class="my-4" *ngFor="let p of prodotti">
+    <mat-expansion-panel
+      (nascondere)="panelOpenState = true"
+      (visualizzare)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ p.nome }} </mat-panel-title>
+        <mat-panel-description class="dettagli">
+          Clicca per maggiori dettagli
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="d-flex align-items-center contenitore">
+        <img src="{{ p.img }}" alt="" />
+        <ul>
+          <li>Prezzo: {{ p.prezzo }}€</li>
+          <li>
+            {{ p.disponibilita ? "Disponibile" : "Non disponibile" }}
+          </li>
+        </ul>
+      </div>
+      <p class="my-2"><mat-icon>description</mat-icon>{{ p.descrizione }}</p>
+      <p class="my-2">
+        <mat-icon>storage</mat-icon>{{ p.condizioni_conservazione }}
+      </p>
+      <p class="my-2"><mat-icon>lightbulb</mat-icon>{{ p.suggerimenti_uso }}</p>
+      <div class="bottoni">
+        <button
+          mat-raised-button
+          *ngIf="isLoggedIn() && !isInWishlist(p)"
+          (click)="addToWishlist(p)"
+          class="rounded-pill viola"
+        >
+        <i class="material-icons">favorite</i>
+                  Aggiungi alla wishlist
+        </button>
 
-    <button mat-raised-button color="primary" *ngIf="isLoggedIn() && !isInWishlist(p)"
-    (click)="addToWishlist(p)">Aggiungi alla wishlist</button>
+        <button
+          mat-raised-button
+          *ngIf="isLoggedIn() && isInWishlist(p)"
+          (click)="removeFromWishlist(p)"
+          class="rounded-pill rosso"
+        >
+        <i class="material-icons">thumb_down</i>
 
-  <button mat-raised-button color="warn" *ngIf="isLoggedIn() && isInWishlist(p)"
-    (click)="removeFromWishlist(p)">Rimuovi dalla wishlist</button>
-
-
-  </mat-expansion-panel>
+          Rimuovi dalla wishlist
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </div>
 </div>
 </div>

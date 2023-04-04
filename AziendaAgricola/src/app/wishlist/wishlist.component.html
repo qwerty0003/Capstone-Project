@@ -1,29 +1,40 @@
-<div class="container">
+<app-spinner *ngIf="!loaded"></app-spinner>
 
-  <div class="row" *ngFor="let prodotto of wishlist">
-    <div class="prodottoExpand my-4">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{prodotto.nome}}</mat-panel-title>
-          <mat-panel-description>
-            Clicca per maggiori dettagli
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="d-flex align-items-center">
-          <img [src]="prodotto.img" alt="" class="w-50" />
-          <ul>
-            <li>prezzo/kg: {{prodotto.prezzo}}€</li>
-            <li>disponibilità: {{prodotto.disponibilita}}</li>
-          </ul>
-        </div>
-        <p class="my-2">{{prodotto.descrizione}}</p>
-        <button mat-fab extended color="warn" class="w-100 rounded-pill" (click)="removeItemFromWishlist(prodotto)">
-          <mat-icon>thumb_down</mat-icon>
-          Rimuovi dalla wishlist
-        </button>
-      </mat-expansion-panel>
+<div *ngIf="loaded">
+  <div class="container">
+    <div class="row" *ngFor="let prodotto of wishlist">
+      <div class="prodottoExpand my-4">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ prodotto.nome }}</mat-panel-title>
+            <mat-panel-description class="dettagli">
+              Clicca per maggiori dettagli
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="d-flex align-items-center">
+            <img [src]="prodotto.img" alt="" class="w-50" />
+            <ul>
+              <li>prezzo/kg: {{ prodotto.prezzo }}€</li>
+              <li>
+                {{ prodotto.disponibilita ? "Disponibile" : "Non disponibile" }}
+              </li>
+            </ul>
+          </div>
+          <p class="my-2">{{ prodotto.descrizione }}</p>
+          <div class="bottoni">
+            <button
+              mat-fab
+              extended
+              color="warn"
+              class="btn btn-danger rounded-pill"
+              (click)="removeItemFromWishlist(prodotto)"
+            >
+              <i class="material-icons">thumb_down</i>
+              Rimuovi dalla wishlist
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </div>
     </div>
   </div>
-
-
 </div>

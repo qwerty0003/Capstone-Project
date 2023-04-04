@@ -1,8 +1,7 @@
-.prodottoShop
-{
-  max-width:100%;
+.prodottoShop {
+  max-width: 100%;
   min-width: 45%;
-  img{
+  img {
     width: 50vw;
     height: 25vh;
   }
@@ -30,5 +29,16 @@
 
 .non-disponibile .pallino {
   background-color: gray;
+}
+
+@media screen and (min-width: 550px) {
+  .prodottoShop {
+    max-width: 100%;
+    min-width: 45%;
+    img {
+      width: 29vw;
+      height: 51vh;
+    }
+  }
 }
 

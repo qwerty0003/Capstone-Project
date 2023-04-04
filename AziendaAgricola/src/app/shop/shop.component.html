@@ -1,110 +1,49 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
 
-  <!-- <div class="row">
-    <div class="prodottoShop my-2 col-12 col-md-6 flex-column">
-      <img
-        src="https://picsum.photos/id/189/400/400"
-        alt=""
-        class="rounded-circle"
-      />
-      <p class="my-2">Avocado, 10€/kg</p>
-      <p class="my-2"></p>
-      <p class="my-2">disponibi / non disponibili</p>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Seleziona la quantità</mat-label>
-        <mat-select>
-          <mat-option value="option">2kg</mat-option>
-          <mat-option value="option">5kg</mat-option>
-          <mat-option value="option">10kg</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-icon class="mx-2">add_shopping_cart</mat-icon>
-    </div>
-    <div class="prodottoShop my-2 col-12 col-md-6 flex-column">
-      <img
-        src="https://picsum.photos/id/189/400/400"
-        alt=""
-        class="rounded-circle"
-      />
-      <p class="my-2">Avocado, 10€/kg</p>
-      <p class="my-2"></p>
-      <p class="my-2">disponibi / non disponibili</p>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Seleziona la quantità</mat-label>
-        <mat-select>
-          <mat-option value="option">2kg</mat-option>
-          <mat-option value="option">5kg</mat-option>
-          <mat-option value="option">10kg</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-icon class="mx-2">add_shopping_cart</mat-icon>
-    </div>
-    <div class="prodottoShop my-2 col-12 col-md-6 flex-column">
-      <img
-        src="https://picsum.photos/id/189/400/400"
-        alt=""
-        class="rounded-circle"
-      />
-      <p class="my-2">Avocado, 10€/kg</p>
-      <p class="my-2"></p>
-      <p class="my-2">disponibi / non disponibili</p>
+<div *ngIf="loaded">
+<div class="container my-2 text-center d-flex justify-content-center">
+  <div class="row">
+    <div
+      *ngFor="let prodotto of prodotti; let last = last"
+      class="prodottoShop my-2 col-12 col-md-6 flex-column"
+      [class.last-child]="last"
+      [ngClass]="{'mx-auto': last}"
+    >
+      <img [src]="prodotto.img" alt="" class="rounded-circle" />
+      <p class="my-2">{{ prodotto.nome }}, {{ prodotto.prezzo }}€</p>
+      <p class="my-2">{{ prodotto.descrizione }}</p>
+      <p class="my-2">
+        <span
+          class="pallino"
+          [ngClass]="{
+            disponibile: prodotto.disponibilita,
+            'non-disponibile': !prodotto.disponibilita
+          }"
+        ></span>
+        <span
+          [ngClass]="{
+            disponibile: prodotto.disponibilita,
+            'non-disponibile': !prodotto.disponibilita
+          }"
+          >{{
+            prodotto.disponibilita ? "Disponibile" : "Non disponibile"
+          }}</span
+        >
+      </p>
 
       <mat-form-field appearance="fill">
         <mat-label>Seleziona la quantità</mat-label>
         <mat-select>
-          <mat-option value="option">2kg</mat-option>
-          <mat-option value="option">5kg</mat-option>
-          <mat-option value="option">10kg</mat-option>
+          <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">{{
+            qnt
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-icon class="mx-2">add_shopping_cart</mat-icon>
+
+      <button mat-icon-button (click)="aggiungiAlCarrello(prodotto)">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
     </div>
-    <div class="prodottoShop my-2 col-12 col-md-6 flex-column">
-      <img
-        src="https://picsum.photos/id/189/400/400"
-        alt=""
-        class="rounded-circle"
-      />
-      <p class="my-2">Avocado, 10€/kg</p>
-      <p class="my-2"></p>
-      <p class="my-2">disponibi / non disponibili</p>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Seleziona la quantità</mat-label>
-        <mat-select>
-          <mat-option value="option">2kg</mat-option>
-          <mat-option value="option">5kg</mat-option>
-          <mat-option value="option">10kg</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-icon class="mx-2">add_shopping_cart</mat-icon>
-    </div>
-  </div> -->
-  <div class="container my-2 text-center d-flex justify-content-center">
-
-    <div class="row">
-      <div class="prodottoShop my-2 col-12 col-md-6 flex-column" *ngFor="let prodotto of prodotti">
-        <img [src]="prodotto.img" alt="" class="rounded-circle" />
-        <p class="my-2">{{ prodotto.nome }}, {{ prodotto.prezzo }}€</p>
-        <p class="my-2">{{ prodotto.descrizione }}</p>
-        <p class="my-2">
-          <span class="pallino" [ngClass]="{'disponibile': prodotto.disponibilita, 'non-disponibile': !prodotto.disponibilita}"></span>
-          <span [ngClass]="{'disponibile': prodotto.disponibilita, 'non-disponibile': !prodotto.disponibilita}">{{ prodotto.disponibilita ? 'Disponibile' : 'Non disponibile' }}</span>
-        </p>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Seleziona la quantità</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">{{ qnt }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <button mat-icon-button (click)="aggiungiAlCarrello(prodotto)">
-          <mat-icon>add_shopping_cart</mat-icon>
-        </button>
-      </div>
-    </div>
-
-
+  </div>
+</div>
 </div>

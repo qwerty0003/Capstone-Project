@@ -1,0 +1,51 @@
+.dettagli {
+  font-size: 0.8rem;
+}
+img {
+  width: 63%;
+  height: 23vh;
+  border-radius: 6%;
+}
+.bottoni {
+  button {
+    width: 100%;
+
+      background-image: linear-gradient(to right, #cb2d3e 0%, #ef473a  51%, #cb2d3e  100%);
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: block;
+
+
+    :hover {
+      background-position: right center;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+
+@media screen and (min-width: 550px) {
+  .dettagli {
+    position: absolute;
+    right: 1.8em;
+  }
+  img {
+    width: 75%;
+    height: 50vh;
+  }
+  .bottoni {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 50%;
+    }
+  }
+}

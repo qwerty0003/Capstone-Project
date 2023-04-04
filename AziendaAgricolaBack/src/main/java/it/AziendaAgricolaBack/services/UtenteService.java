@@ -45,6 +45,7 @@ public class UtenteService {
         wishlist.add(prodotto);
         utente.setWishlist(wishlist);
         utenteRepository.save(utente);
+        System.out.println("aggiunto prodotto "+prodotto.getNome()+" a wishlist utente "+ utente.getEmail());
     }
 
     public void removeFromWishlist(Utente utente, ProdottoAgricolo prodotto) {
@@ -55,6 +56,7 @@ public class UtenteService {
         wishlist.remove(prodotto);
         utente.setWishlist(wishlist);
         utenteRepository.save(utente);
+        System.out.println("rimosso prodotto "+prodotto.getNome()+" a wishlist utente "+ utente.getEmail());
     }
     
     public List<ProdottoAgricolo> getWishlist(Long id) {
@@ -64,4 +66,6 @@ public class UtenteService {
         }
         return null;
     }
+    
+    
 }

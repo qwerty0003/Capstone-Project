@@ -1,0 +1,13 @@
+img{
+  width: 100%;
+}
+
+
+@media screen and (min-width: 550px) {
+img{
+  width: 90vw;
+  height: 80vh;
+  margin:2vh 0 2vh 5vw;
+  border-radius: 2%;
+}
+}

@@ -2,3 +2,30 @@ a{
   color:white;
   text-decoration: none;
 }
+
+#btn{
+  display: flex;
+  justify-content: center;
+}
+
+.btn0 {
+  background-color: #ddd;
+  background-image: linear-gradient(to right, #ddd, #aaa);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+}
+
+.btn0:not(:disabled) {
+  background-color: #7b1fa2;
+  background-image: linear-gradient(to right, #7b1fa2, #a650c3, #d87fe3);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+@media screen and (min-width: 550px) {
+.container{
+  width: 50%;
+}
+}

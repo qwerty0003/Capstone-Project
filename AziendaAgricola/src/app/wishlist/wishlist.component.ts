@@ -12,6 +12,7 @@ import { Prodotto } from '../prodotti/prodotto';
 export class WishlistComponent implements OnInit {
   panelOpenState = false;
   wishlist: Prodotto[] = [];
+  loaded = false;
 
   constructor(private authService: AuthService,
     private utentiService: UtentiService) { }
@@ -27,7 +28,9 @@ export class WishlistComponent implements OnInit {
             });
           }
         });
-      }
+      }setTimeout(() => {
+          this.loaded = true;
+        }, 2000);
     }
 
     removeItemFromWishlist(item: Prodotto) {
