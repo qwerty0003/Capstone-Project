@@ -15,6 +15,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatListModule} from '@angular/material/list';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -69,7 +71,8 @@ import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
     HttpClientModule,
     MatSnackBarModule,
     AuthModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

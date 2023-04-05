@@ -13,14 +13,17 @@ export class NavbarComponent implements OnInit {
   );
   currentUser: any;
   currentUser$: Observable<any> = this.authService.getCurrentUserObservable();
-  utente: AuthData|null= this.authService.getCurrentUser();
+  utente: AuthData|null;
   isLoggedIn = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.utente = authService.getCurrentUser();
+  }
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
       this.isLoggedIn = !!user;
+      this.utente = this.authService.getCurrentUser();
     });
   }
 

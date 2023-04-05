@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,61 +30,42 @@ import jakarta.validation.Valid;
 @RequestMapping("/utenti")
 public class UtenteController {
 
-	@Autowired
-	private UtenteService utenteService;
-	@Autowired
-	private ProdottoAgricoloService prodottoService;
-	
+    @Autowired
+    private UtenteService utenteService;
 
-	@GetMapping("/{id}/wishlist")
-	public ResponseEntity<List<ProdottoAgricolo>> getWishlist(@PathVariable Long id) {
-	    List<ProdottoAgricolo> wishlist = utenteService.getWishlist(id);
-	    if (wishlist != null) {
-	        return ResponseEntity.ok(wishlist);
-	    }
-	    return ResponseEntity.notFound().build();
-	}
+    @GetMapping("/{id}/wishlist")
+    public ResponseEntity<Set<Long>> getWishlist(@PathVariable("id") Long id) {
+        Set<Long> wishlist = utenteService.getWishlist(id);
+        return ResponseEntity.ok(wishlist);
+    }
 
-	@PostMapping("/{id}/wishlist")
-	public ResponseEntity<?> addToWishlist(@PathVariable Long id, @RequestBody @Valid ProdottoAgricolo prodotto, BindingResult bindingResult) {
-	    if (bindingResult.hasErrors()) {
-	        return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
-	    }
-	    Utente utente = utenteService.findById(id);
-	    if (utente == null) {
-	        return ResponseEntity.notFound().build();
-	    }
-	    utenteService.addToWishlist(utente, prodotto);
-	    return ResponseEntity.ok().build();
-	}
+    @PostMapping("/{id}/add/{productId}")
+    public ResponseEntity<Utente> addProductToWishlist(@PathVariable("id") Long id,
+    		@PathVariable("productId") Long productId) {
+        Utente utente = utenteService.aggiungiProdottoAllaWishlist(id, productId);
+        System.out.println("prodotto aggiunto");
+        return ResponseEntity.ok(utente);
+    }
 
-	@DeleteMapping("/{id}/wishlist/{idProdotto}")
-	public ResponseEntity<?> removeFromWishlist(@PathVariable Long id, @PathVariable Long idProdotto) {
-	    Utente utente = utenteService.findById(id);
-	    if (utente == null) {
-	        return ResponseEntity.notFound().build();
-	    }
-	    ProdottoAgricolo prodotto = prodottoService.findById(idProdotto);
-	    if (prodotto == null) {
-	        return ResponseEntity.notFound().build();
-	    }
-	    utenteService.removeFromWishlist(utente, prodotto);
-	    return ResponseEntity.ok().build();
-	}
+    @PostMapping("/{id}/remove/{productId}")
+    public ResponseEntity<Utente> deleteProductFromWishlist(@PathVariable("id") Long id,
+                                                            @PathVariable("productId") Long productId) {
+        Utente utente = utenteService.rimuoviProdottoDallaWishlist(id, productId);
+        System.out.println("prodotto rimosso");
+        return ResponseEntity.ok(utente);
+    }
 
-	
-	@GetMapping("/elenco")
-	public ResponseEntity<List<Map<String, Object>>> getElencoUtenti() {
-	    List<Utente> utenti = utenteService.findAll();
-	    List<Map<String, Object>> elenco = new ArrayList<>();
-	    for (Utente utente : utenti) {
-	        Map<String, Object> mappa = new HashMap<>();
-	        mappa.put("id", utente.getId());
-	        mappa.put("email", utente.getEmail());
-	        elenco.add(mappa);
-	    }
-	    return ResponseEntity.ok(elenco);
-	}
-
-
+    @GetMapping("/elenco")
+    public ResponseEntity<List<Map<String, Object>>> getElencoUtenti() {
+        List<Utente> utenti = utenteService.getUtenti();
+        List<Map<String, Object>> elenco = new ArrayList<>();
+        for (Utente utente : utenti) {
+            Map<String, Object> mappa = new HashMap<>();
+            mappa.put("id", utente.getId());
+            mappa.put("email", utente.getEmail());
+            elenco.add(mappa);
+        }
+        return ResponseEntity.ok(elenco);
+    }
 }
+

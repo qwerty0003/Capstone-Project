@@ -6,7 +6,7 @@
     <h1 class="mx-3">Logo</h1>
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <div id="infoUserNav">
-        <span class="mr-2">{{utente?.username}}</span>
+        <span class="mr-2">{{(currentUser$ | async)?.username}}</span>
         <button mat-icon-button color="warn" (click)="logout()" class="logout">
           <mat-icon>logout</mat-icon>
         </button>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map, forkJoin } from 'rxjs';
 import { WishlistItem } from './wishlist/wishlist-item';
 
 export interface User {
@@ -15,29 +15,53 @@ export interface User {
   providedIn: 'root'
 })
 export class UtentiService {
+  private baseUrl = 'http://localhost:3000/utenti';
+  private productsUrl = 'http://localhost:3000/prodotti-agricoli';
 
-  private apiUrl = 'http://localhost:3000/utenti';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  addToWishlist(userId: string, item: WishlistItem): Observable<any> {
-    const url = `${this.apiUrl}/${userId}/wishlist`;
-    return this.http.post(url, item);
+  getWishlist(id: string): Observable<Set<number>> {
+    return this.http.get<Set<number>>(`${this.baseUrl}/${id}/wishlist`);
   }
 
-  removeFromWishlist(userId: string, itemId: string): Observable<any> {
-    const url = `${this.apiUrl}/${userId}/wishlist/${itemId}`;
-    return this.http.delete(url);
+  addProductToWishlist(id: string, productId: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${id}/add/${productId}`, null);
   }
 
-  getWishlist(userId: string): Observable<any[]> {
-    const url = `${this.apiUrl}/${userId}/wishlist`;
-    return this.http.get<any[]>(url);
+  deleteProductFromWishlist(id: string, productId: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${id}/remove/${productId}`, null);
   }
 
   getElencoUtenti(): Observable<any[]> {
-    const url = `${this.apiUrl}/elenco`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.baseUrl}/elenco`);
+  }
+
+  getProducts(): Observable<WishlistItem[]> {
+    return this.http.get<WishlistItem[]>(`${this.productsUrl}`);
+  }
+
+  getWishlistItems(id: string): Observable<WishlistItem[]> {
+    return forkJoin({
+      wishlist: this.getWishlist(id),
+      products: this.getProducts()
+    }).pipe(
+      map(({wishlist, products}) =>
+        products.filter((product) => [...wishlist].includes(product.id))
+          .map((product) => new WishlistItem(
+            product.id,
+            product.nome,
+            product.descrizione,
+            product.prezzo,
+            product.disponibilita,
+            product.qnt_disponibile,
+            product.qnt_vendita,
+            product.condizioni_conservazione,
+            product.suggerimenti_uso,
+            product.img,
+            product.img_mobile
+          ))
+      )
+    );
   }
 
 }

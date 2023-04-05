@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -45,8 +47,10 @@ public class Utente {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ProdottoAgricolo> wishlist;
+    @ElementCollection
+    @CollectionTable(name = "utente_wishlist", joinColumns = @JoinColumn(name = "utente_id"))
+    @Column(name = "prodotto_id")
+    private Set<Long> wishlist = new HashSet<>();
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "users_roles",
