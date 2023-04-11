@@ -2,6 +2,7 @@
 
 <div *ngIf="loaded">
   <div class="container">
+    <div id="bigsM8">
     <section id="sliderSec" class="my-5">
       <div
         id="carouselExampleControls"
@@ -58,19 +59,19 @@
           [class.last-child]="last"
         >
           <div class="card">
-            <img
-              [src]="prodotto.img"
-              class="card-img-top rounded-circle"
-              alt="img prodotto"
-            />
-            <div class="card-body">
+            <div class="card-image">
+              <img
+                [src]="prodotto.img"
+                class="card-img-top rounded-circle"
+                alt="img prodotto"
+              />
               <p class="card-title">{{ prodotto.nome }}</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
+  </div>
     <section id="prenotaVisita">
       <div id="prenota">
         <p class="fs-3 p-2">

@@ -2,8 +2,7 @@
   font-size: 0.8rem;
 }
 img {
-  width: 63%;
-  height: 23vh;
+  height: 19vh;
   border-radius: 6%;
 }
 
@@ -45,13 +44,12 @@ img {
   text-decoration: none;
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 768px) {
   .dettagli {
     position: absolute;
     right: 1.8em;
   }
   img {
-    width: 75%;
     height: 50vh;
   }
   .bottoni {

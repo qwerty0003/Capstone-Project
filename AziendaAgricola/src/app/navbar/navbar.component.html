@@ -6,20 +6,22 @@
     <h1 class="mx-3">Logo</h1>
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <div id="infoUserNav">
-        <span class="mr-2">{{(currentUser$ | async)?.username}}</span>
-        <button mat-icon-button color="warn" (click)="logout()" class="logout">
-          <mat-icon>logout</mat-icon>
+        <span class="mr-2">{{ (currentUser$ | async)?.username }}</span>
+        <button mat-icon-button (click)="logout()" class="logout">
+          <mat-icon>exit_to_app</mat-icon>
         </button>
       </div>
     </ng-container>
     <ng-template #notLoggedIn>
-      <span *ngIf="!(currentUser$ | async)">
-        <a mat-list-item [routerLink]="'/login'">Login</a>
-      </span>
-
-      <span *ngIf="!(currentUser$ | async)">
-        <a mat-list-item [routerLink]="'/signup'">Signup</a>
-      </span>
+      <div id="logins">
+        <span *ngIf="!(currentUser$ | async)">
+          <a mat-list-item [routerLink]="'/login'">Login </a>
+        </span>
+        <span *ngIf="!(currentUser$ | async)"> - </span>
+        <span *ngIf="!(currentUser$ | async)">
+          <a mat-list-item [routerLink]="'/signup'"> Signup</a>
+        </span>
+      </div>
     </ng-template>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -21,6 +21,7 @@ export class WishlistComponent implements OnInit {
   panelOpenState = false;
   wishlist: WishlistItem[] = [];
   loaded = false;
+  loggedIn = false;
 
   constructor(
     private authService: AuthService,
@@ -30,6 +31,7 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
       if (user) {
+        this.loggedIn = true;
         this.getUserId(user.username).subscribe((userId) => {
           if (userId) {
             this.utentiService.getWishlistItems(userId).subscribe((wishlist) => {

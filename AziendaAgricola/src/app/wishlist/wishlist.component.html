@@ -23,10 +23,9 @@
           <p class="my-2">{{ prodotto.descrizione }}</p>
           <div class="bottoni">
             <button
-              mat-fab
-              extended
+              mat-raised-button
               color="warn"
-              class="btn btn-danger rounded-pill"
+              class="rounded-pill"
               (click)="removeItem(prodotto)"
             >
               <i class="material-icons">thumb_down</i>
@@ -34,6 +33,17 @@
             </button>
           </div>
         </mat-expansion-panel>
+      </div>
+    </div>
+    <div id="vuoto">
+      <div *ngIf="loggedIn && wishlist.length === 0" class="text-center my-4">
+        Aggiungi i tuoi prodotti preferiti alla wishlist da
+        <a [routerLink]="'/prodotti'">qui!</a>
+      </div>
+
+      <div *ngIf="!loggedIn" class="text-center my-4">
+        <a [routerLink]="'/signup'">Registrati</a> e aggiungi i tuoi prodotti
+        preferiti per visualizzarli in questa pagina!
       </div>
     </div>
   </div>

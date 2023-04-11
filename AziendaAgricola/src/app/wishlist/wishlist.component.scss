@@ -10,16 +10,20 @@ img {
   button {
     width: 100%;
 
-      background-image: linear-gradient(to right, #cb2d3e 0%, #ef473a  51%, #cb2d3e  100%);
-      text-align: center;
-      text-transform: uppercase;
-      transition: 0.5s;
-      background-size: 200% auto;
-      color: white;
-      box-shadow: 0 0 20px #eee;
-      border-radius: 10px;
-      display: block;
-
+    background-image: linear-gradient(
+      to right,
+      #cb2d3e 0%,
+      #ef473a 51%,
+      #cb2d3e 100%
+    );
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 1px 1px 3px #eee;
+    border-radius: 10px;
+    display: block;
 
     :hover {
       background-position: right center;
@@ -28,17 +32,22 @@ img {
     }
   }
 }
+#vuoto {
+  display: flex;
+  font-size: 1.4em;
+  justify-content: center;
+  align-items: center;
+  a {
+    color: white;
+  }
+}
 
-
-
-
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 768px) {
   .dettagli {
     position: absolute;
     right: 1.8em;
   }
   img {
-    width: 75%;
     height: 50vh;
   }
   .bottoni {

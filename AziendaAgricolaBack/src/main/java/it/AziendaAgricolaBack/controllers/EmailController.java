@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import it.AziendaAgricolaBack.services.EmailService;
 import jakarta.mail.MessagingException;
 
@@ -23,6 +24,7 @@ public class EmailController {
     private EmailService emailService;
 
     @PostMapping("/prenotazione")
+    @Operation(tags = "email-sender", summary = "Invia email di conferma prenotazione")
     public ResponseEntity<Map<String, String>> prenota(@RequestBody Map<String, String> appointmentData) {
         String nome = appointmentData.get("name");
         String cognome = appointmentData.get("surname");

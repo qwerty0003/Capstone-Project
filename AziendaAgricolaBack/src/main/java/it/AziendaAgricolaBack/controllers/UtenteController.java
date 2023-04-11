@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import it.AziendaAgricolaBack.entities.ProdottoAgricolo;
 import it.AziendaAgricolaBack.entities.Utente;
 import it.AziendaAgricolaBack.services.ProdottoAgricoloService;
@@ -28,18 +30,22 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/utenti")
+@Tag(name = "wishlist", description = "Endpoint per gestire le wishlist degli utenti")
 public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
 
     @GetMapping("/{id}/wishlist")
+    @Operation(summary = "Recupera la wishlist di un utente", tags = {"wishlist"})
     public ResponseEntity<Set<Long>> getWishlist(@PathVariable("id") Long id) {
         Set<Long> wishlist = utenteService.getWishlist(id);
         return ResponseEntity.ok(wishlist);
     }
 
     @PostMapping("/{id}/add/{productId}")
+    @Operation(summary = "Aggiunge un prodotto alla wishlist di un utente", tags = {"wishlist"})
+
     public ResponseEntity<Utente> addProductToWishlist(@PathVariable("id") Long id,
     		@PathVariable("productId") Long productId) {
         Utente utente = utenteService.aggiungiProdottoAllaWishlist(id, productId);
@@ -48,6 +54,8 @@ public class UtenteController {
     }
 
     @PostMapping("/{id}/remove/{productId}")
+    @Operation(summary = "Rimuove un prodotto dalla wishlist di un utente", tags = {"wishlist"})
+
     public ResponseEntity<Utente> deleteProductFromWishlist(@PathVariable("id") Long id,
                                                             @PathVariable("productId") Long productId) {
         Utente utente = utenteService.rimuoviProdottoDallaWishlist(id, productId);
@@ -56,6 +64,7 @@ public class UtenteController {
     }
 
     @GetMapping("/elenco")
+    @Operation(summary = "Recupera l'elenco degli utenti", tags = {"wishlist"})
     public ResponseEntity<List<Map<String, Object>>> getElencoUtenti() {
         List<Utente> utenti = utenteService.getUtenti();
         List<Map<String, Object>> elenco = new ArrayList<>();

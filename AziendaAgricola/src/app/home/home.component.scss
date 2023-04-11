@@ -1,87 +1,93 @@
-section{
-margin: 1em 0;
+section {
+  margin: 1em 0;
 }
 
-.card{
+.card {
   border: none;
   background: none;
 }
 
-.card-title{
+.card-title {
   text-align: center;
 }
-.carousel-item{
-  img{
-    width: 94vw;
-    height: 45vh;
+.carousel-item {
+  img {
+    width: 94%;
+    max-height: 45vh;
   }
 }
 
-#prenota{
+#prenota {
   background-color: #64eabd;
   height: 29vh;
   display: flex;
   align-items: center;
   color: black;
-    a{
-      color:black;
-    }
+  a {
+    color: black;
+  }
 }
 
-#storia{
+#storia {
   display: inline-flex;
 }
 
-#imgStoria{
+#imgStoria {
   width: 58%;
   height: 75%;
   float: right;
 }
 
-.prodotto{
-  img{
+.prodotto {
+  img {
     width: 44vw;
     height: 23vh;
   }
 }
 
-@media screen and (min-width: 550px) {
-  .carousel-item{
-    img{
-      width: 88vw;
-      height: 95vh;
+@media screen and (min-width: 768px) {
+  #bigsM8{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  #sliderSec {
+    width: 50%;
+  }
+
+  #prodotti {
+    width: 50%;
+    text-align: center;
+    .prodotto{
+      img{
+        width: 14vw;
+      }
     }
   }
 
-  .prodotto{
-    img{
-      width: 29vw;
-      height: 51vh;
-    }
-  }
+
   .prodotto.last-child {
     margin-left: auto;
   }
-  #prenota{
+
+  #prenota {
     padding: 28px;
- }
+  }
 
- #storia{
-  display: flex;
-  height: 90vh;
-  justify-content: center;
-  align-items: center;
+  #storia {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #deskText {
+    padding: 14%;
+  }
+
+  #imgStoria {
+    width: 30%;
+    height: 100%;
+  }
 }
-
-#deskText{
-  padding: 14%;
-}
-
-#imgStoria{
-  width: 30%;
-  height: 100%;
-}
-}
-
-
-

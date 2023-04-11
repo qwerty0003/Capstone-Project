@@ -10,6 +10,7 @@ import { Prodotto } from '../prodotti/prodotto';
 export class ShopComponent implements OnInit {
   prodotti: Prodotto[] = [];
   loaded = false;
+  quantitaSelezionata: number = 1;
 
   constructor(private prodottiService: ProdottiServiceService) {}
 
@@ -31,7 +32,7 @@ export class ShopComponent implements OnInit {
   }
 
   aggiungiAlCarrello(prodotto: Prodotto) {
-    console.log('Aggiunto al carrello: ', prodotto.nome);
-    // aggiungi il prodotto al carrello
+    console.log('Aggiunto al carrello: ', prodotto.nome
+    + ", quantita: "+this.quantitaSelezionata );
   }
 }

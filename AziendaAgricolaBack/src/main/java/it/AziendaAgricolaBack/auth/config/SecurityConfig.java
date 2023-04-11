@@ -57,7 +57,9 @@ public class SecurityConfig{
         		.requestMatchers("/prodotti-agricoli").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/utenti/**").permitAll()
-                .requestMatchers("/prenotazione").permitAll())
+                .requestMatchers("/prenotazione").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
+                		"/swagger-ui.html").permitAll())
         .exceptionHandling( exception -> exception
                 .authenticationEntryPoint(authenticationEntryPoint)
         ).sessionManagement( session -> session
