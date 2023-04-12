@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatListModule} from '@angular/material/list';
-
+import {MatRadioModule} from '@angular/material/radio';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,8 @@ import { AppointmentFormComponent } from './vieni-atrovarci/appointment-form/app
 import { AuthModule } from './auth/auth/auth.module';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
+import { CarrelloComponent } from './carrello/carrello.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
     AppointmentFormComponent,
     SpinnerComponent,
     ChiSiamoComponent,
+    CarrelloComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
     AuthModule,
     MatProgressSpinnerModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

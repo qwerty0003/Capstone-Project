@@ -1,0 +1,74 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+<div *ngIf="loaded">
+  <div class="container">
+    <div *ngIf="carrello.length > 0" class="carrello">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Il tuo carrello</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let item of carrello; let i = index">
+            <div class="row align-items-center">
+              <div class="col-2">
+                <p class="my-0">{{ i + 1 }}</p>
+              </div>
+              <div class="col-3">
+                <img
+                  [src]="item.prodotto.img"
+                  alt=""
+                  class="rounded-circle"
+                  height="50px"
+                  width="50px"
+                />
+              </div>
+              <div class="col-4">
+                <p class="my-0">
+                  {{ item.prodotto.nome }} x {{ item.quantita }}
+                </p>
+                <p class="my-0">{{ item.prodotto.prezzo }}€/unità</p>
+              </div>
+              <div class="col-3 text-right">
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="rimuoviDalCarrello(item.prodotto.id)"
+                >
+                  <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div class="col-6 text-right">
+              <h4>Totale:</h4>
+            </div>
+            <div class="col-6 text-left">
+              <h4>{{ getTotale() }}€</h4>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-center">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="confermaAcquisto()"
+          >
+            Conferma acquisto
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div id="vuoto">
+      <div *ngIf="loggedIn && carrello.length === 0" class="text-center my-4">
+        Il tuo carrello è vuoto! Aggiungi prodotti dallo
+        <a [routerLink]="'/shop'">shop</a>
+      </div>
+
+      <div *ngIf="!loggedIn" class="text-center my-4">
+        <a [routerLink]="'/signup'">Registrati</a> e comincia gli acquisti!
+      </div>
+    </div>
+  </div>
+</div>

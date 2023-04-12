@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, throwError,Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../utenti.service';
+import { CarrelloService } from '../carrello.service';
 
 export interface SignupData {
   nome: string;
@@ -37,7 +38,7 @@ export class AuthService {
   isLoggedIn$ = this.user$.pipe(map((user) => !!user));
   autoLogoutTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private cart:CarrelloService) {
     this.restoreUser();
   }
 
@@ -70,7 +71,10 @@ export class AuthService {
     console.log('Logout clicked');
     this.authSubj.next(null); //segnalare al sito che non siamo più loggati
     this.router.navigate(['/']);
-    localStorage.removeItem('user'); //dimentichiamo il token per evitare autologin
+    localStorage.removeItem('user');
+    sessionStorage.clear()
+    this.cart.svuotaCarrello();
+     //dimentichiamo il token per evitare autologin
     if (this.autoLogoutTimer) {
     clearTimeout(this.autoLogoutTimer);
     }

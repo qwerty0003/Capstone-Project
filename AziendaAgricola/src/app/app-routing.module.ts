@@ -9,6 +9,8 @@ import { DoveSiamoComponent } from './dove-siamo/dove-siamo.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CarrelloComponent } from './carrello/carrello.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,14 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
+  },
+  {
+    path: 'carrello',
+    component: CarrelloComponent
   }
 ];
 

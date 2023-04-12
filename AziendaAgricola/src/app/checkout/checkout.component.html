@@ -1,0 +1,127 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+<div *ngIf="loaded">
+  <div class="container">
+    <mat-card>
+      <mat-card-title>Checkout</mat-card-title>
+      <mat-card-content>
+        <!-- Buyer Information -->
+        <div class="buyer-info">
+          <h3>Informazioni Cliente</h3>
+          <form [formGroup]="checkoutForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Numero di telefono</mat-label>
+              <input matInput formControlName="phone" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Indirizzo</mat-label>
+              <input matInput formControlName="address" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Città</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Stato</mat-label>
+              <input matInput formControlName="state" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>CAP</mat-label>
+              <input matInput formControlName="zip" />
+            </mat-form-field>
+          </form>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="shipping-address">
+          <h3>Indirizzo Spedizione</h3>
+          <form [formGroup]="shippingForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Indirizzo</mat-label>
+              <input matInput formControlName="shippingAddress" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Città</mat-label>
+              <input matInput formControlName="shippingCity" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Stato</mat-label>
+              <input matInput formControlName="shippingState" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>CAP</mat-label>
+              <input matInput formControlName="shippingZip" />
+            </mat-form-field>
+          </form>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="payment-method">
+          <h3>Metodo di Pagamento</h3>
+          <form [formGroup]="paymentForm">
+            <mat-radio-group formControlName="paymentMethod">
+              <mat-radio-button value="Credit Card"
+                >Carta di Credito</mat-radio-button
+              >
+              <mat-radio-button value="PayPal">PayPal</mat-radio-button>
+            </mat-radio-group>
+          </form>
+        </div>
+
+        <!-- Sezione Riepilogo Ordine -->
+        <mat-card class="checkout-card">
+          <mat-card-header>
+            <mat-card-title>Riepilogo Ordine</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="order-summary">
+              <div *ngFor="let item of cartItems" class="order-item">
+                <p>{{ item.prodotto.nome }} x {{ item.quantita }}</p>
+                <p>{{ item.prodotto.prezzo * item.quantita }}€</p>
+              </div>
+            </div>
+
+            <div class="order-total">
+              <div class="subtotal">
+                <p>Subtotale</p>
+                <p>{{ subtotal }}€</p>
+              </div>
+              <div class="shipping-fee">
+                <p>Spedizione</p>
+                <p>{{ shippingFee }}€</p>
+              </div>
+              <div class="total">
+                <p>Totale</p>
+                <p>{{ total }}€</p>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="onSubmit()">
+              Conferma Ordine
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

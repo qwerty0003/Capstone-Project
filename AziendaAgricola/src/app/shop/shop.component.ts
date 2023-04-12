@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdottiServiceService } from '../prodotti-service.service';
 import { Prodotto } from '../prodotti/prodotto';
+import { CarrelloService } from '../carrello.service';
 
 @Component({
   selector: 'app-shop',
@@ -12,7 +13,7 @@ export class ShopComponent implements OnInit {
   loaded = false;
   quantitaSelezionata: number = 1;
 
-  constructor(private prodottiService: ProdottiServiceService) {}
+  constructor(private prodottiService: ProdottiServiceService, private carrelloService: CarrelloService) {}
 
   ngOnInit() {
     this.getProdotti();
@@ -32,7 +33,7 @@ export class ShopComponent implements OnInit {
   }
 
   aggiungiAlCarrello(prodotto: Prodotto) {
-    console.log('Aggiunto al carrello: ', prodotto.nome
-    + ", quantita: "+this.quantitaSelezionata );
+    this.carrelloService.aggiungiAlCarrello(prodotto, this.quantitaSelezionata);
+    console.log(this.carrelloService.getCarrello());
   }
 }
