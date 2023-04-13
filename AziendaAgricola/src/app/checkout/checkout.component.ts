@@ -3,6 +3,8 @@ import { AuthService } from '../auth/auth-service.service';
 import { faker } from '@faker-js/faker';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarrelloService } from '../carrello.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 interface CheckoutData {
   name: string;
@@ -26,14 +28,12 @@ interface CheckoutData {
   total: number;
 }
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
-
   user = this.auth.getCurrentUser();
 
   checkoutForm: FormGroup;
@@ -50,33 +50,41 @@ export class CheckoutComponent implements OnInit {
     address: faker.address.streetAddress(),
     city: faker.address.city(),
     state: faker.address.state(),
-    zip: faker.address.zipCode()
+    zip: faker.address.zipCode(),
   };
   shippingAddress = {
     address: faker.address.streetAddress(),
     city: faker.address.city(),
     state: faker.address.state(),
-    zip: faker.address.zipCode()
+    zip: faker.address.zipCode(),
   };
 
   paymentMethod = 'Credit Card';
 
-  orderSummary: { name: string; price: number; quantity: number; }[]=[];
+  orderSummary: { name: string; price: number; quantity: number }[] = [];
 
-  subtotal: number=0;
-  shippingFee: number=5;
-  total: number=0;
+  subtotal: number = 0;
+  shippingFee: number = 5;
+  total: number = 0;
   loaded = false;
 
-  constructor(private auth: AuthService, private formBuilder: FormBuilder, private cart: CarrelloService) {
+  constructor(
+    private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private cart: CarrelloService,
+    private snackBar: MatSnackBar
+  ) {
     this.checkoutForm = this.formBuilder.group({
       name: [this.buyerInfo.name, Validators.required],
-      email: [this.buyerInfo.email, Validators.compose([Validators.required, Validators.email])],
+      email: [
+        this.buyerInfo.email,
+        Validators.compose([Validators.required, Validators.email]),
+      ],
       phone: [this.buyerInfo.phone, Validators.required],
       address: [this.buyerInfo.address, Validators.required],
       city: [this.buyerInfo.city, Validators.required],
       state: [this.buyerInfo.state, Validators.required],
-      zip: [this.buyerInfo.zip, Validators.required]
+      zip: [this.buyerInfo.zip, Validators.required],
     });
     this.shippingForm = this.formBuilder.group({
       shippingAddress: [this.shippingAddress.address, Validators.required],
@@ -85,14 +93,14 @@ export class CheckoutComponent implements OnInit {
       shippingZip: [this.shippingAddress.zip, Validators.required],
     });
     this.paymentForm = this.formBuilder.group({
-      paymentMethod: ['', Validators.required]
+      paymentMethod: ['', Validators.required],
     });
     setTimeout(() => {
       this.loaded = true;
     }, 3000);
-   }
+  }
 
-   ngOnInit() {
+  ngOnInit() {
     this.cartItems = this.cart.getCarrello();
     console.log(this.cartItems);
 
@@ -100,55 +108,38 @@ export class CheckoutComponent implements OnInit {
       let product = {
         name: item.name,
         price: item.price,
-        quantity: item.quantity
+        quantity: item.quantity,
       };
       this.orderSummary.push(product);
     }
     this.subtotal = this.cart.getTotale();
-    this.total = this.subtotal + this.shippingFee
+    this.total = this.subtotal + this.shippingFee;
   }
 
   onSubmit() {
-    /*  name: string;
-    email: string;
-    phoneNumber: string;
-    shippingAddress: {
-      street: string;
-      city: string;
-      state: string;
-      zipCode: string;
-      country: string;
-    };
-    paymentMethod: string;
-    products: {
-      name: string;
-      price: number;
-    quantity: number;
-  }[];
-  subtotal: number;
-  shippingFee: number;
-  total: number;
-}*/
-this.checkoutData = {
-  name: this.checkoutForm.get('name')!.value,
-  email: this.checkoutForm.get('email')!.value,
-  phoneNumber: this.checkoutForm.get('phone')!.value,
-  shippingAddress: {
-    street: this.shippingForm.get('shippingAddress')!.value,
-    city: this.shippingForm.get('shippingCity')!.value,
-    state: this.shippingForm.get('shippingState')!.value,
-    zipCode: this.shippingForm.get('shippingZip')!.value,
-    country: 'Italy' // se il paese è sempre Italia, puoi hardcodarlo qui
-  },
-  paymentMethod: this.paymentForm.get('paymentMethod')!.value,
-  products: this.orderSummary,
-  subtotal: this.subtotal,
+    this.checkoutData = {
+      name: this.checkoutForm.get('name')!.value,
+      email: this.checkoutForm.get('email')!.value,
+      phoneNumber: this.checkoutForm.get('phone')!.value,
+      shippingAddress: {
+        street: this.shippingForm.get('shippingAddress')!.value,
+        city: this.shippingForm.get('shippingCity')!.value,
+        state: this.shippingForm.get('shippingState')!.value,
+        zipCode: this.shippingForm.get('shippingZip')!.value,
+        country: 'USA',
+      },
+      paymentMethod: this.paymentForm.get('paymentMethod')!.value,
+      products: this.cartItems,
+      subtotal: this.subtotal,
       shippingFee: this.shippingFee,
-      total: this.subtotal + this.shippingFee
+      total: this.subtotal + this.shippingFee,
     };
     this.cart.svuotaCarrello();
     console.log(this.checkoutData);
-
+    this.snackBar.open('Ordine confermato. Ti arriverà una mail di conferma', 'Chiudi', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
-
 }

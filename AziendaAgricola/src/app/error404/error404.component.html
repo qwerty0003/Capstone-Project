@@ -1,0 +1,21 @@
+<div class="container">
+  <app-spinner *ngIf="!loaded"></app-spinner>
+
+  <div *ngIf="loaded">
+
+    <h2>Errore 404: pagina non trovata.</h2>
+
+    <p>
+      Ci dispiace, ma sembra che tu abbia perso la strada. Fortunatamente,
+      abbiamo l'arma segreta per aiutarti a trovare di nuovo la tua strada:
+      l'olio magico delle pagine web! Clicca qui per provare il nostro metodo
+      infallibile per risolvere qualsiasi errore.
+    </p>
+    <a [routerLink]="'/'">
+      <img
+        src="../../assets/pg404img.jfif"
+        alt="img laser oil detroying errors"
+      />
+    </a>
+  </div>
+</div>

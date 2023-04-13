@@ -8,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class VieniATrovarciComponent implements OnInit {
 
   selected = Date;
+  loaded=false;
 
   constructor() {
 
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loaded = true;
+    }, 2000);
   }
 
 }

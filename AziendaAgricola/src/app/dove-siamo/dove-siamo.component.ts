@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoveSiamoComponent implements OnInit {
 
+  loaded = false
+
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loaded = true;
+    }, 3000);
   }
 
 }

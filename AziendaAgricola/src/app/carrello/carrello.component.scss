@@ -1,9 +1,29 @@
-#vuoto {
-  display: flex;
-  font-size: 1.4em;
-  justify-content: center;
-  align-items: center;
-  a {
-    color: white;
+.container {
+  margin-top: 1em;
+  width: 45%;
+  #vuoto {
+    display: flex;
+    font-size: 1.4em;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: white;
+    }
+  }
+}
+#bottone {
+  background: linear-gradient(to bottom, #7b1fa2 0%, #a71ad4 100%);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  /* Effetto hover */
+  :hover {
+    background: linear-gradient(to bottom, #9c27b0 0%, #d500f9 100%);
   }
 }

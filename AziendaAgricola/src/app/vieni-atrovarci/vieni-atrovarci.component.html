@@ -1,3 +1,8 @@
+<app-spinner *ngIf="!loaded"></app-spinner>
+
+<div *ngIf="loaded">
 <div class="container my-5">
   <app-appointment-form></app-appointment-form>
 </div>
+</div>
+

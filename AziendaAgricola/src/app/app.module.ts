@@ -37,6 +37,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ChiSiamoComponent } from './chi-siamo/chi-siamo.component';
 import { CarrelloComponent } from './carrello/carrello.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { Error404Component } from './error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ChiSiamoComponent,
     CarrelloComponent,
     CheckoutComponent,
+    Error404Component,
   ],
   imports: [
     BrowserModule,

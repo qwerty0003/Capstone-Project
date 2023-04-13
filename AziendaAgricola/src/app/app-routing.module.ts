@@ -11,6 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarrelloComponent } from './carrello/carrello.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { Error404Component } from './error404/error404.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'carrello',
     component: CarrelloComponent
+  },
+  {
+    path: '**',
+    component: Error404Component
   }
 ];
 

@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mat-card {
+    width: 100%;
+    max-width: 800px;
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -10px;
+      margin-left: -10px;
+
+      & > * {
+        flex-grow: 1;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        width: calc(25% - 20px);
+
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+
+        @media screen and (max-width: 767px) {
+          width: calc(50% - 20px);
+          margin-right: 0;
+
+          &:nth-child(2n) {
+            margin-right: 10px;
+          }
+
+          &:last-child:nth-child(2n) {
+            margin-right: 0;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          width: 100%;
+          margin-right: 0;
+          margin-left: 0;
+        }
+      }
+    }
+
+    .checkout-card {
+      margin-top: 40px;
+
+      .order-summary {
+        margin-bottom: 20px;
+
+        .order-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+      }
+
+      .order-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .buyer-info,
+    .shipping-address,
+    .payment-method {
+      margin-bottom: 20px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        .form-row {
+          margin-bottom: 20px;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+      }
+    }
+    .mat-card-actions {
+      button {
+        background: linear-gradient(to bottom, #7b1fa2 0%, #a71ad4 100%);
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+
+        /* Effetto hover */
+        :hover {
+          background: linear-gradient(to bottom, #9c27b0 0%, #d500f9 100%);
+        }
+      }
+    }
+  }
+}

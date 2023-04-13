@@ -3,7 +3,7 @@
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
-    <h1 class="mx-3">Logo</h1>
+    <img src="../../assets/logozz.png" alt="logo">
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <div id="infoUserNav">
         <span class="mr-2">{{ (currentUser$ | async)?.username }}</span>

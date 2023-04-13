@@ -1,6 +1,11 @@
 li {
   list-style: none;
 }
+#nav{
+  img{
+    width: 85px;
+  }
+}
 
 .logout{
   color: #7b1fa2 ;
@@ -41,3 +46,10 @@ li {
     }
 }
 
+@media screen and (min-width: 768px) {
+#nav{
+  img{
+    width: 100px;
+  }
+}
+}
