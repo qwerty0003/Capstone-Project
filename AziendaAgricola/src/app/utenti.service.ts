@@ -15,8 +15,8 @@ export interface User {
   providedIn: 'root'
 })
 export class UtentiService {
-  private baseUrl = 'http://localhost:3000/utenti';
-  private productsUrl = 'http://localhost:3000/prodotti-agricoli';
+  private baseUrl = 'https://my-capstone-web-server.osc-fr1.scalingo.io/utenti';
+  private productsUrl = 'https://my-capstone-web-server.osc-fr1.scalingo.io/prodotti-agricoli';
 
   constructor(private http: HttpClient) {}
 

@@ -32,7 +32,7 @@ export interface LoginData {
   providedIn: 'root'
 })
 export class AuthService {
-  URL: string = 'http://localhost:3000/api/auth/';
+  URL: string = 'https://my-capstone-web-server.osc-fr1.scalingo.io/api/auth/';
   private authSubj = new BehaviorSubject<null | AuthData>(null);
   user$ = this.authSubj.asObservable();
   isLoggedIn$ = this.user$.pipe(map((user) => !!user));

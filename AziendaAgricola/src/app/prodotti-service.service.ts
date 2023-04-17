@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProdottiServiceService {
 
-  private baseUrl = 'http://localhost:3000/prodotti-agricoli';
+  private baseUrl = 'https://my-capstone-web-server.osc-fr1.scalingo.io/prodotti-agricoli';
 
   constructor(private http: HttpClient) { }
 

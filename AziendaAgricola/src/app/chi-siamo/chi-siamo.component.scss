@@ -1,13 +1,55 @@
-img{
-  width: 100%;
+p {
+  font-size: 1.1em;
 }
 
+#img1 {
+  width: 75%;
+  float: left;
+  margin: 5px 5px 0 0;
+}
+
+#img2 {
+  width: 65%;
+  float: right;
+  margin: 5px 0 0 5px;
+}
+
+#imgs3 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+.img34 {
+  width: 35%;
+}
 
 @media screen and (min-width: 768px) {
-img{
-  width: 90vw;
-  height: 80vh;
-  margin:2vh 0 2vh 5vw;
-  border-radius: 2%;
-}
+  #contenitore {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 1em;
+  }
+  h1 {
+    font-size: 3em;
+    margin-left: 2em;
+  }
+
+  p {
+    font-size: 2em;
+    line-height: 1.3em;
+  }
+
+  #img1 {
+    width: 55%;
+  }
+
+  #img2 {
+    width: 40%;
+  }
+
+  .img34 {
+    width: 22%;
+  }
 }

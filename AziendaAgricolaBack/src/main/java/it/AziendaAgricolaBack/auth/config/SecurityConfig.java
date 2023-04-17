@@ -17,6 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 import it.AziendaAgricolaBack.auth.security.JwtAuthenticationEntryPoint;
 import it.AziendaAgricolaBack.auth.security.JwtAuthenticationFilter;
@@ -70,6 +73,7 @@ public class SecurityConfig{
 
     	return http.build();
     }
+
     
  
 }
