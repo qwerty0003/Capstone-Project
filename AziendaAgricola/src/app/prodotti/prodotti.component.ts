@@ -28,6 +28,7 @@ export class ProdottiComponent implements OnInit {
   ngOnInit(): void {
     this.prodottiService.getProducts().subscribe((data: Prodotto[]) => {
       this.prodotti = data;
+      this.loaded=true;
     });
 
     const user = this.authService.getCurrentUser();
@@ -44,9 +45,7 @@ export class ProdottiComponent implements OnInit {
       this.wishlistReady = true;
     }
 
-    setTimeout(() => {
-      this.loaded = true;
-    }, 2000);
+
   }
 
   isLoggedIn(): boolean {

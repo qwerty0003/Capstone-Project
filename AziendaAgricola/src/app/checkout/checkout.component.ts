@@ -95,9 +95,6 @@ export class CheckoutComponent implements OnInit {
     this.paymentForm = this.formBuilder.group({
       paymentMethod: ['', Validators.required],
     });
-    setTimeout(() => {
-      this.loaded = true;
-    }, 3000);
   }
 
   ngOnInit() {
@@ -114,6 +111,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.subtotal = this.cart.getTotale();
     this.total = this.subtotal + this.shippingFee;
+    this.loaded=true;
   }
 
   onSubmit() {

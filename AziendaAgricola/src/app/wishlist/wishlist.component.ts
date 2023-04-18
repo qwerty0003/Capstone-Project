@@ -36,6 +36,7 @@ export class WishlistComponent implements OnInit {
           if (userId) {
             this.utentiService.getWishlistItems(userId).subscribe((wishlist) => {
               this.wishlist = wishlist;
+              this.loaded=true;
             });
           }
         });
@@ -43,9 +44,6 @@ export class WishlistComponent implements OnInit {
     });
     console.log(this.wishlist);
 
-    setTimeout(() => {
-      this.loaded = true;
-    }, 2000);
   }
 
   removeItem(product: WishlistItem): void {

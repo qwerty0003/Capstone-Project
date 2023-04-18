@@ -2,6 +2,17 @@ section {
   margin: 1em 0;
 }
 
+#titolo{
+  margin: 1em 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 1.7em;
+}
+
+hr{
+  opacity: 7%;
+}
+
 .card {
   border: none;
   background: none;
@@ -51,6 +62,10 @@ section {
 }
 
 @media screen and (min-width: 768px) {
+  #titolo{
+    font-size: 3em;
+  }
+
   #bigsM8 {
     display: flex;
     flex-wrap: wrap;

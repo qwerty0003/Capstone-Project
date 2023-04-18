@@ -15,10 +15,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.prodottiService.getProducts().subscribe((data) => {
       this.prodotti = data;
+      this.loaded=true;
     });
-    setTimeout(() => {
-      this.loaded = true;
-    }, 2000);
   }
 
 }

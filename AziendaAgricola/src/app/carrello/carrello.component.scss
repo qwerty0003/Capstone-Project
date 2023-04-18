@@ -1,6 +1,5 @@
 .container {
   margin-top: 1em;
-  width: 45%;
   #vuoto {
     display: flex;
     font-size: 1.4em;
@@ -26,4 +25,10 @@
   :hover {
     background: linear-gradient(to bottom, #9c27b0 0%, #d500f9 100%);
   }
+}
+
+@media screen and (min-width:768px){
+.container{
+  width: 45%;
+}
 }

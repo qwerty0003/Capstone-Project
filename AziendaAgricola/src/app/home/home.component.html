@@ -2,8 +2,10 @@
 
 <div *ngIf="loaded">
   <div class="container">
+    <h1 class="text-center" id="titolo">Azienda Agricola Naccarato</h1>
+    <hr>
     <div id="bigsM8">
-    <section id="sliderSec" class="my-5">
+    <section id="sliderSec" class="my-2">
       <div
         id="carouselExampleControls"
         class="carousel slide"
@@ -62,7 +64,7 @@
             <div class="card-image">
               <img
                 [src]="prodotto.img"
-                class="card-img-top rounded-circle"
+                class="card-img-top rounded-circle animate__animated animate__fadeInUp"
                 alt="img prodotto"
               />
               <p class="card-title">{{ prodotto.nome }}</p>

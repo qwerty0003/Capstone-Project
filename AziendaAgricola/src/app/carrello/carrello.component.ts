@@ -21,9 +21,7 @@ export class CarrelloComponent implements OnInit {
     if(this.auth.isLoggedIn()){
       this.loggedIn = true;
     }
-    setTimeout(() => {
-      this.loaded = true;
-    }, 2000);
+    this.loaded=true;
   }
 
   rimuoviDalCarrello(index: number) {

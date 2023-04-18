@@ -17,16 +17,13 @@ export class ShopComponent implements OnInit {
 
   ngOnInit() {
     this.getProdotti();
-
-    setTimeout(() => {
-      this.loaded = true;
-    }, 2000);
   }
 
   getProdotti() {
     this.prodottiService.getProducts().subscribe(
       (data) => {
         this.prodotti = data;
+        this.loaded=true;
       },
       (error) => console.error(error)
     );
