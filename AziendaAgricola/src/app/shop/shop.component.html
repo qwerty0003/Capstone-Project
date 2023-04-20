@@ -34,9 +34,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Seleziona la quantità</mat-label>
         <mat-select [(ngModel)]="quantitaSelezionata">
-          <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">{{
-            qnt
-          }}</mat-option>
+          <mat-option *ngFor="let qnt of prodotto.qnt_vendita" [value]="qnt">
+            {{qnt}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
